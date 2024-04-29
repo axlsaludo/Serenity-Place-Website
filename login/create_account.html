@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="create_account.css"> <!-- Reference to the shared CSS file -->
+    <style>
+        /* Your existing CSS styles here */
+    </style>
 </head>
 <body>
 
@@ -21,11 +24,25 @@
             <input type="text" id="username" name="username" required>
             <span class="check-icon hidden" id="username-check"></span>
         </div>
+        <!-- Password Requirements -->
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
+            <div class="password-wrapper">
+                <input type="password" id="password" name="password" required>
+                <div class="password-requirements hidden" id="password-requirements">
+                    <p>Password must contain:</p>
+                    <ul>
+                        <li class="length"><span class="icon"></span>At least 8 characters </li>
+                        <li class="lowercase"><span class="icon"></span>At least one lowercase letter </li>
+                        <li class="uppercase"><span class="icon"></span>At least one uppercase letter </li>
+                        <li class="number"><span class="icon"></span>At least one number </li>
+                        <li class="special-character"><span class="icon"></span>At least one special character </li>
+                    </ul>
+                </div>
+            </div>
             <span class="check-icon hidden" id="password-check"></span>
         </div>
+        <!-- End Password Requirements -->
         <div class="form-group">
             <label for="confirm-password">Confirm Password</label>
             <input type="password" id="confirm-password" name="confirm-password" required>
@@ -35,8 +52,7 @@
     </form>
 </div>
 
-<script src="script.js"></script>
+<script src="create_account.js"></script>
 
 </body>
 </html>
-
