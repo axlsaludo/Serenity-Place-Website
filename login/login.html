@@ -7,7 +7,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-image: url("assets/img/hero-bg.jpg");
+            background-size: cover;
+            background-position: center;
             margin: 0;
             padding: 0;
             display: flex;
@@ -16,14 +18,14 @@
             height: 100vh;
         }
         .login-container {
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         .login-container h2 {
             margin-bottom: 20px;
-            text-align: center;
         }
         .login-container form {
             display: flex;
@@ -51,6 +53,14 @@
         .login-container input[type="submit"]:hover {
             background-color: #0056b3;
         }
+        .create-account {
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .create-account:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -63,6 +73,7 @@
             <input type="password" id="password" name="password" required>
             <input type="submit" value="Login">
         </form>
+        <a href="Create_an_account.html" class="create-account">Create an account</a>
     </div>
 </body>
 </html>
