@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2504870f-f316-47ea-a0e4-186210233628" name="Changes" comment="Revert Back because i am mad">
+    <list default="true" id="2504870f-f316-47ea-a0e4-186210233628" name="Changes" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/assets/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/villas.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/villas.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +51,7 @@
     "JavaScript Debug.database.php.executor": "Run",
     "JavaScript Debug.index.html.executor": "Run",
     "PHP Script.database.php.executor": "Run",
+    "PHP Script.index.html.executor": "Run",
     "PHP Script.index.php.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -69,6 +67,11 @@
 }]]></component>
   <component name="RunManager">
     <configuration name="index.html" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/index.html">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
       <method v="2" />
     </configuration>
   </component>
@@ -89,7 +92,7 @@
       <option name="presentableId" value="Default" />
       <updated>1714415635036</updated>
       <workItem from="1714415637057" duration="1070000" />
-      <workItem from="1714456987264" duration="160000" />
+      <workItem from="1714456987264" duration="630000" />
     </task>
     <task id="LOCAL-00001" summary="Revert Back because i am mad">
       <option name="closed" value="true" />
@@ -99,7 +102,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714415940229</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Update">
+      <option name="closed" value="true" />
+      <created>1714457436320</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714457436320</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +129,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Revert Back because i am mad" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert Back because i am mad" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
 </project>
