@@ -1,0 +1,130 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    background: url("../img/hero-bg.jpg") top center;
+    background-size: cover;
+    position: relative;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Common styles for login container and create account container */
+.login-container,
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Shared styles for forms */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+/* Styles for submit button */
+input[type="submit"],
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Styles for account links */
+.create-account,
+.back-to-login {
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.create-account:hover,
+.back-to-login:hover {
+    text-decoration: underline;
+}
+
+/* Additional styles for smooth transition */
+.inactive {
+    max-width: 0;
+    margin-top: -100px; /* Adjust as needed */
+    padding: 0;
+    overflow: hidden;
+    transform: scaleY(0); /* Added transform property */
+    transition: max-width 0.5s ease-in-out, margin-top 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform-origin: top center; /* Added transform-origin */
+}
+
+.expanded {
+    max-width: 400px;
+    margin-top: 20px; /* Adjusted margin-top */
+    padding: 20px;
+    transform: scaleY(1); /* Added transform property */
+}
+
+/* CSS for card container */
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* CSS for card */
+.card {
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease; /* Add transition property here */
+}
+
+/* Additional styles for create account card */
+.create-account-card {
+    width: 400px;
+    max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease; /* Add transition property here */
+}
+
+.create-account-card.expanded {
+    transform: scale(1);
+}
+
+/* Animation for card expansion */
+.card.login-card.expanded {
+    transform: scale(0);
+}
+
+.card.create-account-card.expanded {
+    transform: scale(1);
+}

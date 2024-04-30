@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Create Account</title>
+    <link rel="stylesheet" href="assets/css/account.css"> <!-- Reference to the external CSS file -->
+</head>
+<body>
+    <div class="card-container">
+        <div class="card login-card">
+            <div class="login-container">
+                <h2>Login</h2>
+                <form id="login-form" action="#" method="post">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <input type="submit" value="Login">
+                </form>
+                <a href="#" class="create-account">Create an account</a>
+            </div>
+        </div>
+
+        <div class="card create-account-card inactive">
+            <div class="container" id="signup-form">
+                <h2>Create Account</h2>
+                <form action="/signup" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                        <span class="check-icon hidden" id="name-check"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                        <span class="check-icon hidden" id="username-check"></span>
+                    </div>
+                    <!-- Password Requirements -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" name="password" required>
+                            <div class="password-requirements hidden" id="password-requirements">
+                                <p>Password must contain:</p>
+                                <ul>
+                                    <li class="length"><span class="icon"></span>At least 8 characters </li>
+                                    <li class="lowercase"><span class="icon"></span>At least one lowercase letter </li>
+                                    <li class="uppercase"><span class="icon"></span>At least one uppercase letter </li>
+                                    <li class="number"><span class="icon"></span>At least one number </li>
+                                    <li class="special-character"><span class="icon"></span>At least one special character </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <span class="check-icon hidden" id="password-check"></span>
+                    </div>
+                    <!-- End Password Requirements -->
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                        <span class="check-icon hidden" id="confirm-password-check"></span>
+                    </div>
+                    <button type="submit">Create Account</button>
+                </form>
+                <a href="#" class="back-to-login">Back to Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="account.js"></script> <!-- Reference to the external JavaScript file -->
+</body>
+</html>
