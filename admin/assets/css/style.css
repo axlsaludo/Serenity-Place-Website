@@ -952,42 +952,6 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Icons list page
---------------------------------------------------------------*/
-.iconslist {
-  display: grid;
-  max-width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.25rem;
-  padding-top: 15px;
-}
-
-.iconslist .icon {
-  background-color: #fff;
-  border-radius: 0.25rem;
-  text-align: center;
-  color: #012970;
-  padding: 15px 0;
-}
-
-.iconslist i {
-  margin: 0.25rem;
-  font-size: 2.5rem;
-}
-
-.iconslist .label {
-  font-family: var(--bs-font-monospace);
-  display: inline-block;
-  width: 100%;
-  overflow: hidden;
-  padding: 0.25rem;
-  font-size: 12px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #666;
-}
-
-/*--------------------------------------------------------------
 # Profie Page
 --------------------------------------------------------------*/
 .profile .profile-card img {
@@ -1039,19 +1003,6 @@ h6 {
 
 .profile .profile-edit img {
   max-width: 120px;
-}
-
-/*--------------------------------------------------------------
-# F.A.Q Page
---------------------------------------------------------------*/
-.faq .basic h6 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #4154f1;
-}
-
-.faq .basic p {
-  color: #6980aa;
 }
 
 /*--------------------------------------------------------------
@@ -1162,44 +1113,6 @@ h6 {
 
   100% {
     transform: rotate(360deg);
-  }
-}
-
-/*--------------------------------------------------------------
-# Error 404
---------------------------------------------------------------*/
-.error-404 {
-  padding: 30px;
-}
-
-.error-404 h1 {
-  font-size: 180px;
-  font-weight: 700;
-  color: #4154f1;
-  margin-bottom: 0;
-  line-height: 150px;
-}
-
-.error-404 h2 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #012970;
-  margin-bottom: 30px;
-}
-
-.error-404 .btn {
-  background: #51678f;
-  color: #fff;
-  padding: 8px 30px;
-}
-
-.error-404 .btn:hover {
-  background: #3e4f6f;
-}
-
-@media (min-width: 992px) {
-  .error-404 img {
-    max-width: 50%;
   }
 }
 
