@@ -1,0 +1,44 @@
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    background: url("../img/hero-bg.jpg") top center;
+    background-size: cover;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Common styles for login container and create account container */
+.card,
+.create-account-popup {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+    display: none; /* Hide pop-up by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
+}
+
+/* Dim the background when pop-up is active */
+body.create-account-active {
+    filter: blur(5px);
+}
