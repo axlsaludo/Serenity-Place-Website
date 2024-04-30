@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
   <title>The Serenity Place Booking</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -24,11 +23,12 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <!-- FullCalendar CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- FullCalendar CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
 </head>
 
 <body>
@@ -36,7 +36,6 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
-
       <h1 class="logo"><a href="index.html">The Serenity Place</a></h1>
       <nav id="navbar" class="navbar">
         <ul>
@@ -47,7 +46,6 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
     </div>
   </header><!-- End Header -->
 
@@ -56,7 +54,6 @@
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
       <div class="container">
-
         <div class="d-flex justify-content-between align-items-center">
           <h2>Booking</h2>
           <ol>
@@ -64,25 +61,50 @@
             <li>Booking</li>
           </ol>
         </div>
-
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <!-- FullCalendar container -->
-    <div id="calendar"></div>
+    <!-- ======= Booking Section ======= -->
+    <section id="booking" class="booking">
+      <div class="container">
+        <div class="row">
+          <!-- Calendar column (left side) -->
+          <div class="col-md-6">
+            <div id="calendar"></div>
+            <button id="addBookingBtn" class="btn btn-primary mt-3">Add Booking</button>
+          </div>
+          <!-- Villa information column (right side) -->
+          <div class="col-md-6">
+            <div class="villa-info">
+              <!-- Villa information content goes here -->
+              <h2>Villa Information</h2>
+              <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <p>Price: $150/night</p>
+              <button class="btn btn-add-to-cart" onclick="addToCart('Deluxe Room', 150)">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Booking Section -->
 
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-
     <div class="footer-top">
       <div class="container">
         <div class="row">
-
-
+          <div class="col-lg-12">
+            <div class="cart-summary" id="cartSummary">
+              <h3>Cart Summary</h3>
+              <p>Total: $0</p>
+              <button class="btn btn-checkout" onclick="checkout()">Checkout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container d-md-flex py-4">
-
       <div class="me-md-auto text-center text-md-start">
         <div class="copyright">
           &copy; Copyright <strong><span>OnePage</span></strong>. All Rights Reserved
@@ -109,34 +131,35 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  <!-- FullCalendar JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <!-- FullCalendar JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
   <script>
-    $(document).ready(function() {
-      $('#calendar').fullCalendar({
-        // FullCalendar options here
-        // For example:
-        defaultView: 'month',
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
         events: [
-          {
-            title: 'Event 1',
-            start: '2024-04-01'
-          },
-          {
-            title: 'Event 2',
-            start: '2024-04-10'
-          }
+          // Your events data here
         ]
+      });
+
+      calendar.render();
+
+      // Add event listener to the "Add Booking" button
+      document.getElementById('addBookingBtn').addEventListener('click', function() {
+        var selectedDate = calendar.getDate(); // Get the currently selected date
+        // Perform booking-related actions here, such as showing a modal or form
+        alert('Booking added for: ' + selectedDate.toISOString());
       });
     });
   </script>
-
 </body>
 
 </html>
