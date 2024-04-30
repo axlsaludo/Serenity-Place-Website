@@ -30,15 +30,9 @@ input[type="password"] {
     box-sizing: border-box;
 }
 
-.check-icon {
-    color: green;
-}
-
-.check-icon::before {
-    content: '✔';
-}
-
-.check-icon.hidden {
+/* Hide check icon for name and username */
+#name-check,
+#username-check {
     display: none;
 }
 
@@ -122,3 +116,37 @@ input[type="password"] {
     content: '✔'; /* Change to green check when valid */
     color: green;
 }
+
+/* CSS for the container */
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: max-width 5s ease-in-out, margin-top 5s ease-in-out, transform 5s ease-in-out; /* Updated transition duration */
+    transform-origin: top center; /* Added transform-origin */
+}
+
+/* CSS for the description */
+.container h2 {
+    margin-top: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* CSS for the description when it's visible */
+.container.active h2 {
+    opacity: 1;
+}
+
+/* CSS for the form when it's hidden */
+.container.inactive {
+    max-width: 0;
+    margin-top: -100px; /* Adjust as needed */
+    padding: 0;
+    overflow: hidden;
+    transform: scaleY(0); /* Added transform property */
+}
+
