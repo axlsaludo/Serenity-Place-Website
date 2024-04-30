@@ -915,6 +915,7 @@ section {
 .card-img-top {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  width: 100%;
 }
 
 .card-body {
@@ -975,6 +976,35 @@ section {
 
 .btn-checkout:hover {
   background-color: #469fdf;
+}
+
+/* Add this CSS to your existing stylesheet */
+
+/* Gallery slider styling */
+.gallery-slider {
+  margin-bottom: 30px;
+}
+
+.swiper-slide img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  opacity: 1;
+  border: 1px solid #2487ce;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #2487ce;
 }
 
 /*--------------------------------------------------------------
