@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
   <title>The Serenity Place Booking</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -23,12 +24,72 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- FullCalendar CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- FullCalendar CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+  <!-- Custom Styles -->
+  <style>
+    #calendar-container {
+      margin: 50px auto; /* Center the container horizontally */
+      padding: 0 20px; /* Add padding to the sides */
+      max-width: 800px; /* Limit the width of the container */
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      animation-name: modalopen;
+      animation-duration: 0.5s;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    @keyframes modalopen {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+
+  <!-- FullCalendar JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 </head>
 
 <body>
@@ -36,91 +97,121 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
+
       <h1 class="logo"><a href="index.html">The Serenity Place</a></h1>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-    </div>
+      </div>
   </header><!-- End Header -->
 
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Booking</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Booking</li>
-          </ol>
-        </div>
-      </div>
+      <!-- Breadcrumb content -->
     </section><!-- End Breadcrumbs -->
 
-    <!-- ======= Booking Section ======= -->
-    <section id="booking" class="booking">
-      <div class="container">
-        <div class="row">
-          <!-- Calendar column (left side) -->
-          <div class="col-md-6">
-            <div id="calendar"></div>
-            <button id="addBookingBtn" class="btn btn-primary mt-3">Add Booking</button>
-          </div>
-          <!-- Villa information column (right side) -->
-          <div class="col-md-6">
-            <div class="villa-info">
-              <!-- Villa information content goes here -->
-              <h2>Villa Information</h2>
-              <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <p>Price: $150/night</p>
-              <button class="btn btn-add-to-cart" onclick="addToCart('Deluxe Room', 150)">Add to Cart</button>
-            </div>
-          </div>
-        </div>
+    <!-- Calendar container -->
+    <div id="calendar-container">
+      <div id="calendar"></div>
+    </div>
+
+    <!-- Reservation Modal -->
+    <div id="reservationModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Make a Reservation</h2>
+        <!-- Reservation form -->
+        <form id="reservationForm">
+          <label for="reservationDate">Reservation Date:</label>
+          <input type="text" id="reservationDate" name="reservationDate" readonly>
+          <label for="villaOption">Select Villa:</label>
+          <select id="villaOption" name="villaOption">
+            <option value="Villa 1">Villa 1</option>
+            <option value="Villa 2">Villa 2</option>
+            <option value="Villa 3">Villa 3</option>
+          </select>
+          <label for="startTime">Start Time:</label>
+          <input type="time" id="startTime" name="startTime">
+          <label for="endTime">End Time:</label>
+          <input type="time" id="endTime" name="endTime">
+          <button type="submit">Submit</button>
+        </form>
       </div>
-    </section><!-- End Booking Section -->
+    </div>
 
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
+
     <div class="footer-top">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="cart-summary" id="cartSummary">
-              <h3>Cart Summary</h3>
-              <p>Total: $0</p>
-              <button class="btn btn-checkout" onclick="checkout()">Checkout</button>
-            </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>OnePage</h3>
+            <p>
+              A108 Adam Street <br>
+              New York, NY 535022<br>
+              United States <br><br>
+              <strong>Phone:</strong> +1 5589 55488 55<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
           </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Join Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+          </div>
+
         </div>
       </div>
     </div>
+
     <div class="container d-md-flex py-4">
+
       <div class="me-md-auto text-center text-md-start">
         <div class="copyright">
           &copy; Copyright <strong><span>OnePage</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-          Designed by <a href="">LogicLabs</a>
+              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
         <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
     </div>
   </footer><!-- End Footer -->
-
-  <div id="preloader"></div>
+<div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -135,31 +226,48 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- FullCalendar JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
-
+  <!-- Custom Script -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        events: [
-          // Your events data here
-        ]
+    $(document).ready(function() {
+      var calendar = $('#calendar').fullCalendar({
+        // FullCalendar options here
+        // For example:
+        defaultView: 'month',
+        selectable: true,
+        select: function(start, end) {
+          $('#reservationModal').css('display', 'block');
+          $('#reservationDate').val(start.format('YYYY-MM-DD'));
+        }
       });
 
-      calendar.render();
+      // Close modal when clicking on close button or outside modal
+      $('.close, #reservationModal').on('click', function(event) {
+        if (event.target == $('#reservationModal')[0] || event.target == $('.close')[0]) {
+          $('#reservationModal').css('display', 'none');
+        }
+      });
 
-      // Add event listener to the "Add Booking" button
-      document.getElementById('addBookingBtn').addEventListener('click', function() {
-        var selectedDate = calendar.getDate(); // Get the currently selected date
-        // Perform booking-related actions here, such as showing a modal or form
-        alert('Booking added for: ' + selectedDate.toISOString());
+      // Submit reservation form
+      $('#reservationForm').on('submit', function(event) {
+        event.preventDefault();
+        var villaOption = $('#villaOption').val();
+        var reservationDate = $('#reservationDate').val();
+        var startTime = $('#startTime').val();
+        var endTime = $('#endTime').val();
+        // Add your reservation submission logic here
+        alert('Reservation submitted successfully!\nVilla: ' + villaOption + '\nDate: ' + reservationDate + '\nStart Time: ' + startTime + '\nEnd Time: ' + endTime);
+        $('#reservationModal').css('display', 'none');
+
+        // Render event on calendar
+        calendar.fullCalendar('renderEvent', {
+          title: villaOption,
+          start: reservationDate + 'T' + startTime,
+          end: reservationDate + 'T' + endTime
+        }, true);
       });
     });
   </script>
+
 </body>
 
 </html>
