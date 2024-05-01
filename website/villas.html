@@ -29,78 +29,111 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- Custom Styles -->
   <style>
     #calendar {
       margin: 50px auto; /* Add margin and center the calendar horizontally */
     }
+    
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      animation-name: modalopen;
+      animation-duration: 0.5s;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    @keyframes modalopen {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
   </style>
+
+  <!-- FullCalendar JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 </head>
 
 <body>
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="index.html">The Serenity Place</a></h1>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
+    <!-- Header content -->
   </header><!-- End Header -->
 
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Booking</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Booking</li>
-          </ol>
-        </div>
-
-      </div>
+      <!-- Breadcrumb content -->
     </section><!-- End Breadcrumbs -->
 
     <!-- FullCalendar container -->
     <div id="calendar"></div>
 
+    <!-- Reservation Modal -->
+    <div id="reservationModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Make a Reservation</h2>
+        <!-- Reservation form -->
+        <form id="reservationForm">
+          <label for="reservationDate">Reservation Date:</label>
+          <input type="text" id="reservationDate" name="reservationDate" readonly>
+          <label for="villaOption">Select Villa:</label>
+          <select id="villaOption" name="villaOption">
+            <option value="Villa 1">Villa 1</option>
+            <option value="Villa 2">Villa 2</option>
+            <option value="Villa 3">Villa 3</option>
+          </select>
+          <label for="reservationName">Your Name:</label>
+          <input type="text" id="reservationName" name="reservationName">
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-
-    <div class="container d-md-flex py-4">
-
-      <div class="me-md-auto text-center text-md-start">
-        <div class="copyright">
-          &copy; Copyright <strong><span>OnePage</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-          Designed by <a href="">LogicLabs</a>
-        </div>
-      </div>
-      <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-      </div>
-    </div>
+    <!-- Footer content -->
   </footer><!-- End Footer -->
 
   <div id="preloader"></div>
@@ -114,30 +147,46 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  <!-- FullCalendar JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <!-- Custom Script -->
   <script>
     $(document).ready(function() {
-      $('#calendar').fullCalendar({
+      var calendar = $('#calendar').fullCalendar({
         // FullCalendar options here
         // For example:
         defaultView: 'month',
-        events: [
-          {
-            title: 'Event 1',
-            start: '2024-04-01'
-          },
-          {
-            title: 'Event 2',
-            start: '2024-04-10'
-          }
-        ]
+        selectable: true,
+        select: function(start, end) {
+          $('#reservationModal').css('display', 'block');
+          $('#reservationDate').val(start.format('YYYY-MM-DD'));
+        }
+      });
+
+      // Close modal when clicking on close button or outside modal
+      $('.close, #reservationModal').on('click', function(event) {
+        if (event.target == $('#reservationModal')[0] || event.target == $('.close')[0]) {
+          $('#reservationModal').css('display', 'none');
+        }
+      });
+
+      // Submit reservation form
+      $('#reservationForm').on('submit', function(event) {
+        event.preventDefault();
+        var villaOption = $('#villaOption').val();
+        var reservationDate = $('#reservationDate').val();
+        var reservationName = $('#reservationName').val();
+        // Add your reservation submission logic here
+        alert('Reservation submitted successfully!\nVilla: ' + villaOption + '\nDate: ' + reservationDate + '\nName: ' + reservationName);
+        $('#reservationModal').css('display', 'none');
+
+        // Render event on calendar
+        calendar.fullCalendar('renderEvent', {
+          title: villaOption + ' - ' + reservationName,
+          start: reservationDate
+        }, true);
       });
     });
   </script>
