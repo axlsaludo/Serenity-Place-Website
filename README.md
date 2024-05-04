@@ -1,8 +1,6 @@
 # Serenity Place Lipa Website
 Welcome to the Serenity Place Lipa Website repository! This GitHub repository houses the code and assets for the official website of Serenity Place Lipa, a serene resort located in Lipa, Batangas, dedicated to providing guests with a relaxing getaway experience.
 
----
-
 ## About the Website
 The Serenity Place Lipa Website serves as the online portal for guests to learn about the resort, explore available accommodations and amenities, and make reservations. Built using modern web technologies, the website offers a seamless and intuitive user experience, ensuring that visitors can easily access all the information they need to plan their stay at Serenity Place Lipa.
 
