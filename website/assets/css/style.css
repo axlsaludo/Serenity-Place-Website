@@ -1486,5 +1486,43 @@ button[type="submit"]:hover {
 }
 
 
+/*--------------------------------------------------------------
+# Villas Container
+--------------------------------------------------------------*/
+
+.Villas-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.left, .right {
+  flex: 1;
+}
+
+.left {
+  margin-right: 20px;
+}
+
+.right {
+  margin-left: 20px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.right img {
+  width: 100%; /* Ensure the image on the right takes up 100% of its container */
+  height: 100%; /* Maintain the aspect ratio */
+}
+
+
+
 
 
