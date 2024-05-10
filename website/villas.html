@@ -110,33 +110,37 @@
     </section><!-- End Breadcrumbs -->
 
     <!-- Calendar container -->
-    <div id="calendar-container">
-      <div id="calendar"></div>
-    </div>
-
-    <!-- Reservation Modal -->
-    <div id="reservationModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Make a Reservation</h2>
-        <!-- Reservation form -->
-        <form id="reservationForm">
-          <label for="reservationDate">Reservation Date:</label>
-          <input type="text" id="reservationDate" name="reservationDate" readonly>
-          <label for="villaOption">Select Villa:</label>
-          <select id="villaOption" name="villaOption">
-            <option value="Villa 1">Villa 1</option>
-            <option value="Villa 2">Villa 2</option>
-            <option value="Villa 3">Villa 3</option>
-          </select>
-          <label for="startTime">Start Time:</label>
-          <input type="time" id="startTime" name="startTime">
-          <label for="endTime">End Time:</label>
-          <input type="time" id="endTime" name="endTime">
-          <button type="submit">Submit</button>
-        </form>
+    <div id="calendar-reservation-container">
+      <!-- Calendar container -->
+      <div id="calendar-container">
+        <div id="calendar"></div>
+      </div>
+      <!-- Reservation form container -->
+      <div id="reservation-container">
+        <div id="reservationModal" class="modal">
+          <div class="modal-content">
+            <h2>Make a Reservation</h2>
+            <!-- Reservation form -->
+            <form id="reservationForm">
+              <label for="reservationDate">Reservation Date:</label>
+              <input type="text" id="reservationDate" name="reservationDate" readonly>
+              <label for="villaOption">Select Villa:</label>
+              <select id="villaOption" name="villaOption">
+                <option value="Villa 1">Villa 1</option>
+                <option value="Villa 2">Villa 2</option>
+                <option value="Villa 3">Villa 3</option>
+              </select>
+              <label for="startTime">Start Time:</label>
+              <input type="time" id="startTime" name="startTime">
+              <label for="endTime">End Time:</label>
+              <input type="time" id="endTime" name="endTime">
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
+    
 
   </main><!-- End #main -->
 
