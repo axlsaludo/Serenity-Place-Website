@@ -1424,11 +1424,18 @@ section {
 }
 
 #calendar-container {
-  flex: 70;
+  flex: 1;
+  /* Take up remaining space */
 }
 
 #reservation-container {
-  flex: 30;
+  background-color: #196512d7;
+  /* Adjust as per your requirement */
+  display: flex;
+  justify-content: flex-end;
+  /* Align reservation form to the right */
+  padding: 0; /* Remove any padding */
+  margin: 0; /* Remove any margin */
 }
 
 /* Additional styling for the reservation form */
@@ -1477,5 +1484,7 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #45a049;
 }
+
+
 
 
