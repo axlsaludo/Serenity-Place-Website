@@ -266,3 +266,62 @@
   new PureCounter();
 
 })()
+
+  /**
+     * JS for villas slideshow
+     */
+
+  var slideIndex = 1;
+  showSlides(slideIndex);
+  
+  // Next/previous controls
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+  
+  // Thumbnail image controls
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+  
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    if (n > slides.length) {
+      slideIndex = 1;
+    }
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndex - 1].style.display = "block";
+  }
+  
+
+  
+  /**
+     * JS for coonected slideshow and reservation name
+     */
+
+  $(document).ready(function() {
+    // Function to update slideshow based on selected villa
+    function updateSlideshow(villa) {
+      // Hide all slides
+      $('.mySlides').hide();
+      // Show the slide corresponding to the selected villa
+      $('#' + villa).show();
+    }
+  
+    // Event listener for villa selection dropdown
+    $('#villaOption').on('change', function() {
+      var selectedVilla = $(this).val();
+      // Call the function to update the slideshow
+      updateSlideshow(selectedVilla);
+    });
+  
+    // Rest of your existing code...
+  
+  });
+  
