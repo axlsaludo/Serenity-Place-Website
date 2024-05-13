@@ -266,3 +266,80 @@
   new PureCounter();
 
 })()
+
+  /**
+     * JS for villas slideshow
+     */
+
+var slideIndex = 1;
+var slideTimer;
+
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  clearTimeout(slideTimer); // Clear the timer
+  showSlides((slideIndex += n), n > 0 ? "next" : "prev"); // Pass the direction of the transition
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  clearTimeout(slideTimer); // Clear the timer
+  showSlides((slideIndex = n));
+}
+
+// Function to display slides
+function showSlides(n, direction) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  
+  // Hide all slides
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  // Calculate the direction of animation
+  var animClass = direction === "next" ? "uncover-right" : "uncover-left";
+  
+  // Display the current slide with animation
+  slides[slideIndex - 1].style.display = "block";
+  slides[slideIndex - 1].classList.add(animClass);
+
+  // Start slideshow timer
+  slideTimer = setTimeout(function () {
+    plusSlides(1);
+  }, 5000); // Change image every 5 seconds
+}
+
+
+  
+  /**
+     * JS for coonected slideshow and reservation name
+     */
+
+  $(document).ready(function() {
+    // Function to update slideshow based on selected villa
+    function updateSlideshow(villa) {
+      // Hide all slides
+      $('.mySlides').hide();
+      // Show the slide corresponding to the selected villa
+      $('#' + villa).show();
+    }
+  
+    // Event listener for villa selection dropdown
+    $('#villaOption').on('change', function() {
+      var selectedVilla = $(this).val();
+      // Call the function to update the slideshow
+      updateSlideshow(selectedVilla);
+    });
+  
+    // Rest of your existing code...
+  
+  });
+  
