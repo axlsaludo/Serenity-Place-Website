@@ -1416,25 +1416,15 @@ section {
 }
 
 /* Calendar and Sched Stuff */
-
-/* Overall Container Styles */
-#main-container {
-  display: flex; /* Use flexbox to layout children side by side */
-  justify-content: space-between; /* Space them evenly */
-  padding: 20px; /* Add some padding around */
-  background-color: #f1f1f1; /* Set a unified background color */
-  max-width: 1200px; /* Maximum width of the entire container */
-  margin: 0 auto; /* Center the container horizontally */
-}
-
-#calendar-reservation-container {
-  display: flex;
-  justify-content: space-between;
-  background-color: white;
-  padding: 20px;
-  max-width: 2200px;
-  margin: 0 auto;
-}
+  #calendar-reservation-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    max-width: 2200px;
+    margin: 0 auto;
+    border-radius: 8px;
+  }
 
 #calendar-container, #reservation-container {
   flex: 1;
@@ -1443,70 +1433,33 @@ section {
 
 #reservation-container {
   background-color: #ffffff;
-  padding: 40px;
+  padding: 20px;
   max-width: 500px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-
-/* Modal Styles */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); /* Overlay background */
+.time-container, .guests {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%; /* Makes modal content narrower */
-  animation: modalopen 0.5s; /* Applies the animation */
+.time-container div, .guests div {
+  flex: 1; /* Flex property to divide space equally */
+  margin-right: 10px; /* Space between elements */
 }
 
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+.time-container div:last-child, .guests div:last-child {
+  margin-right: 0; /* No margin on the last element */
 }
 
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Animation for Modal Opening */
-@keyframes modalopen {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Reservation Form Styles */
-#reservationModal {
-  padding: 20px;
-  max-width: 100%; /* Uses the full width of its container */
-}
-
-label, h2 {
-  margin: 10px 0; /* Consistent vertical spacing */
-}
-
-input[type="text"], select, input[type="time"] {
-  width: 100%;
-  padding: 8px;
+input[type="time"], input[type="number"], input[type="text"], select {
+  width: 100%; /* Full width to fill container */
+  padding: 12px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding does not affect width */
 }
 
 button[type="submit"] {
@@ -1516,11 +1469,35 @@ button[type="submit"] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  position: relative; /* Change to relative for better control */
+  width: 100%; /* Full width button */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Subtle shadow for depth */
 }
 
 button[type="submit"]:hover {
   background-color: #45a049;
+}
+
+label {
+  display: block; /* Makes label take full width */
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 14px; /* Larger font size for readability */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .time-container, .guests {
+    flex-direction: column;
+  }
+
+  .time-container div, .guests div {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .time-container div:last-child, .guests div:last-child {
+    margin-bottom: 0; /* No extra margin at the bottom of the last element */
+  }
 }
 
 /*--------------------------------------------------------------

@@ -104,6 +104,8 @@
       </div>
     </div>
 
+    <!-- Calendar View -->
+
     <div id="calendar-reservation-container">
       <div id="calendar-container">
         <div id="calendar"></div>
@@ -111,29 +113,40 @@
       <div id="reservation-container">
         <div class="reservation-form">
           <h2>Make a Reservation</h2>
-          <!-- Reservation Form -->
           <form id="reservationForm">
-            <label for="reservationStartDate">Start Date:</label>
-            <input type="text" id="reservationStartDate" name="reservationStartDate" readonly>
-            <label for="reservationEndDate">End Date:</label>
-            <input type="text" id="reservationEndDate" name="reservationEndDate" readonly>
-
             <label for="villaOption">Select Villa:</label>
             <select id="villaOption" name="villaOption">
               <option value="Villa 1">PEARL</option>
               <option value="Villa 2">BREEZE</option>
               <option value="Villa 3">HAVEN</option>
             </select>
-            <label for="startTime">Start Time:</label>
-            <input type="time" id="startTime" name="startTime">
-            <label for="endTime">End Time:</label>
-            <input type="time" id="endTime" name="endTime">
+
+            <label for="reservationStartDate">Arrival Date:</label>
+            <input type="text" id="reservationStartDate" name="reservationStartDate" readonly>
+            <label for="reservationEndDate">Departure Date:</label>
+            <input type="text" id="reservationEndDate" name="reservationEndDate" readonly>
+
+            <div class="time-container">
+              <label for="startTime">Start Time:</label>
+              <input type="time" id="startTime" name="startTime">
+
+              <label for="endTime">End Time:</label>
+              <input type="time" id="endTime" name="endTime">
+            </div>
+
+            <div class="guests">
+              <label for="adultsCount">Adults:</label>
+              <input type="number" id="adultsCount" name="adultsCount" min="1" max="10">
+
+              <label for="childrenCount">Children:</label>
+              <input type="number" id="childrenCount" name="childrenCount" min="0" max="10">
+            </div>
+
             <button type="submit">Submit</button>
           </form>
         </div>
       </div>
     </div>
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
