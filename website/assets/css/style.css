@@ -1500,6 +1500,25 @@ label {
   }
 }
 
+/* Additions to existing CSS */
+
+.time-container, .guests {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px; /* Increase margin between sections */
+}
+
+.time-input, .guests-input {
+  display: flex;
+  flex-direction: column;
+  width: 45%; /* Adjust the width as needed */
+}
+
+.time-input label, .guests-input label {
+  margin-bottom: 5px;
+}
+
+
 /*--------------------------------------------------------------
 # Villas Container
 --------------------------------------------------------------*/

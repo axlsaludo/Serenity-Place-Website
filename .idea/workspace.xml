@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2504870f-f316-47ea-a0e4-186210233628" name="Changes" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/villas.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/villas.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +108,7 @@
       <workItem from="1714456987264" duration="1540000" />
       <workItem from="1714801497289" duration="900000" />
       <workItem from="1715602295917" duration="136000" />
-      <workItem from="1715607153121" duration="6387000" />
+      <workItem from="1715607153121" duration="10655000" />
     </task>
     <task id="LOCAL-00001" summary="Revert Back because i am mad">
       <option name="closed" value="true" />

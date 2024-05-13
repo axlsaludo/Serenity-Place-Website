@@ -105,49 +105,63 @@
     </div>
 
     <!-- Calendar View -->
+    <main>
+      <div id="calendar-reservation-container">
+        <div id="calendar-container">
+          <div id="calendar"></div>
+        </div>
+        <div id="reservation-container">
+          <div class="reservation-form">
+            <h2>Make a Reservation</h2>
+            <form id="reservationForm">
+              <label for="villaOption">Select Villa:</label>
+              <select id="villaOption" name="villaOption">
+                <option value="Villa 1">PEARL</option>
+                <option value="Villa 2">BREEZE</option>
+                <option value="Villa 3">HAVEN</option>
+              </select>
 
-    <div id="calendar-reservation-container">
-      <div id="calendar-container">
-        <div id="calendar"></div>
-      </div>
-      <div id="reservation-container">
-        <div class="reservation-form">
-          <h2>Make a Reservation</h2>
-          <form id="reservationForm">
-            <label for="villaOption">Select Villa:</label>
-            <select id="villaOption" name="villaOption">
-              <option value="Villa 1">PEARL</option>
-              <option value="Villa 2">BREEZE</option>
-              <option value="Villa 3">HAVEN</option>
-            </select>
+              <label for="reservationStartDate">Arrival Date:</label>
+              <input type="text" id="reservationStartDate" name="reservationStartDate" readonly>
 
-            <label for="reservationStartDate">Arrival Date:</label>
-            <input type="text" id="reservationStartDate" name="reservationStartDate" readonly>
-            <label for="reservationEndDate">Departure Date:</label>
-            <input type="text" id="reservationEndDate" name="reservationEndDate" readonly>
+              <label for="reservationEndDate">Departure Date:</label>
+              <input type="text" id="reservationEndDate" name="reservationEndDate" readonly>
 
-            <div class="time-container">
-              <label for="startTime">Start Time:</label>
-              <input type="time" id="startTime" name="startTime">
+              <hr>
 
-              <label for="endTime">End Time:</label>
-              <input type="time" id="endTime" name="endTime">
-            </div>
+              <div class="time-container">
+                <div class="time-input">
+                  <label for="startTime">Start Time:</label>
+                  <input type="time" id="startTime" name="startTime">
+                </div>
 
-            <div class="guests">
-              <label for="adultsCount">Adults:</label>
-              <input type="number" id="adultsCount" name="adultsCount" min="1" max="10">
+                <div class="time-input">
+                  <label for="endTime">End Time:</label>
+                  <input type="time" id="endTime" name="endTime">
+                </div>
+              </div>
 
-              <label for="childrenCount">Children:</label>
-              <input type="number" id="childrenCount" name="childrenCount" min="0" max="10">
-            </div>
+              <hr>
 
-            <button type="submit">Submit</button>
-          </form>
+              <div class="guests">
+                <div class="guests-input">
+                  <label for="adultsCount">Adults:</label>
+                  <input type="number" id="adultsCount" name="adultsCount" min="1" max="10">
+                </div>
+
+                <div class="guests-input">
+                  <label for="childrenCount">Children:</label>
+                  <input type="number" id="childrenCount" name="childrenCount" min="0" max="10">
+                </div>
+              </div>
+
+              <button type="submit">Submit</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </main><!-- End #main -->
+    </main><!-- End #main -->
+
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
