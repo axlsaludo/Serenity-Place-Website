@@ -1415,61 +1415,98 @@ section {
   text-decoration: none;
 }
 
-/*--------------------------------------------------------------
-# Calendar
---------------------------------------------------------------*/
+/* Calendar and Sched Stuff */
+
+/* Overall Container Styles */
+#main-container {
+  display: flex; /* Use flexbox to layout children side by side */
+  justify-content: space-between; /* Space them evenly */
+  padding: 20px; /* Add some padding around */
+  background-color: #f1f1f1; /* Set a unified background color */
+  max-width: 1200px; /* Maximum width of the entire container */
+  margin: 0 auto; /* Center the container horizontally */
+}
 
 #calendar-reservation-container {
   display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20px;
+  max-width: 2200px;
+  margin: 0 auto;
 }
 
-#calendar-container {
+#calendar-container, #reservation-container {
   flex: 1;
-  /* Take up remaining space */
+  padding: 20px;
 }
 
 #reservation-container {
-  background-color: #196512d7;
-  /* Adjust as per your requirement */
-  display: flex;
-  justify-content: flex-end;
-  /* Align reservation form to the right */
-  padding: 0; /* Remove any padding */
-  margin: 0; /* Remove any margin */
+  background-color: #ffffff;
+  padding: 40px;
+  max-width: 500px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Additional styling for the reservation form */
-#reservationModal {
-  display: block;
-  position: relative;
-  padding: 20px;
-  max-width: 400px; /* Adjust width as needed */
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Overlay background */
 }
 
 .modal-content {
   background-color: #fefefe;
+  margin: 15% auto;
   padding: 20px;
-  border-radius: 5px;
+  border: 1px solid #888;
+  width: 50%; /* Makes modal content narrower */
+  animation: modalopen 0.5s; /* Applies the animation */
 }
 
-h2 {
-  margin-top: 0;
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-input[type="text"],
-select,
-input[type="time"] {
+/* Animation for Modal Opening */
+@keyframes modalopen {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Reservation Form Styles */
+#reservationModal {
+  padding: 20px;
+  max-width: 100%; /* Uses the full width of its container */
+}
+
+label, h2 {
+  margin: 10px 0; /* Consistent vertical spacing */
+}
+
+input[type="text"], select, input[type="time"] {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box;
 }
 
 button[type="submit"] {
@@ -1479,19 +1516,19 @@ button[type="submit"] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  position: relative; /* Change to relative for better control */
 }
 
 button[type="submit"]:hover {
   background-color: #45a049;
 }
 
-
 /*--------------------------------------------------------------
 # Villas Container
 --------------------------------------------------------------*/
 
 .Villas-container {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   text-align: center; /* Center the content */
 }
@@ -1529,84 +1566,98 @@ button[type="submit"]:hover {
   margin-top: 0; /* Remove default margin for heading and paragraph */
 }
 
-
-
-
-/*--------------------------------------------------------------
-# Villas Container Slideshow
---------------------------------------------------------------*/
-
-.Villas-container {
+.carousel-container {
   position: relative;
-  width: 80%;
-  margin: 0 auto;
+  width: 95%; /* Adjusting width to be slightly narrower for aesthetic */
+  margin: 0 auto; /* Center the carousel within its container */
+  overflow: hidden; /* Hide anything outside this container */
+  padding: 20px; /* Consistent padding */
 }
 
-.mySlides {
-  display: none;
-}
-
-.fade {
-  animation-name: fade;
-  animation-duration: 1.1s;
-}
-
-@keyframes fade {
-  from {
-    opacity: .4
-  }
-  to {
-    opacity: 1
-  }
-}
-
-.row {
+.carousel-slide {
   display: flex;
+  width: 100%; /* Total width (100% * number of cards) */
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(0); /* Initialize transform for animation */
 }
 
-.left,
-.right {
-  flex: 1;
+.carousel-item img {
+  border-radius: 8px;
+  height: 650px;  /* Fixed height for images */
+  object-fit: cover;  /* Cover fit to handle different image sizes */
 }
 
-.left {
-  margin-right: 20px;
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for captions */
+  color: white;
+  padding: 10px;
 }
 
-.right {
-  margin-left: 20px;
+.card {
+  flex: 0 0 50%; /* Adjusted for slight separation */
+  margin: 0 100px; /* Adding horizontal margins */
+  margin-bottom: 50px;
+  background-size: cover;
+  background-position: center;
+  height: 700px; /* Provides ample space for content */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  border-radius: 10px; /* Smoothed corners for aesthetics */
+  position: relative; /* For positioning content */
+  display: block;
+  justify-content: center;
+  align-items: center;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+.card-content {
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%; /* Slightly less to show some background */
+  text-align: center;
+  position: absolute;
 }
 
-.right img {
-  width: 100%;
-  height: auto;
-}
-
-.prev,
-.next {
+button.prev, button.next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  cursor: pointer;
-  padding: 16px;
-  background-color: rgba(0, 0, 0, 0.3);
-  color: white;
+  background-color: #ddd;
   border: none;
-  border-radius: 0 4px 4px 0;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 100;
 }
 
-.prev {
-  left: 0;
+button.prev {
+  left: 10px;
 }
 
-.next {
-  right: 0;
+button.next {
+  right: 10px;
 }
 
+button.prev:hover, button.next:hover {
+  background-color: #ccc;
+}
 
+@media (max-width: 1000px) { /* Updated for practical responsive breakpoint */
+  .carousel-item img {
+    height: 300px;  /* Smaller fixed height for smaller screens */
+  }
 
+  .card {
+    flex: 0 0 50%; /* Full width on small screens to show one card at a time */
+    height: 300px; /* Smaller height for smaller devices */
+    margin: 0 5px; /* Smaller margins */
+  }
+
+  .card-content {
+    padding: 10px; /* Less padding on smaller screens */
+    width: 100%; /* Use the full width of the card */
+  }
+
+  button.prev, button.next {
+    padding: 5px 40px; /* Smaller buttons on smaller screens */
+  }
+}

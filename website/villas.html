@@ -24,67 +24,13 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+
   <!-- FullCalendar CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
-  <!-- Custom Styles -->
-  <style>
-    #calendar-container {
-      margin: 50px auto; /* Center the container horizontally */
-      padding: 0 20px; /* Add padding to the sides */
-      max-width: 800px; /* Limit the width of the container */
-    }
-
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.4);
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      margin: 10% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      animation-name: modalopen;
-      animation-duration: 0.5s;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    @keyframes modalopen {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-  </style>
 
   <!-- FullCalendar JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -109,109 +55,84 @@
       <!-- Breadcrumb content -->
     </section><!-- End Breadcrumbs -->
 
-<!-- ======= Villas Container ======= -->
+  <!-- ======= Villas Container ======= -->
 
-<!-- ======= Villas Container ======= -->
-<div class="Villas-container">
-  <div class="slideshow-container">
-    <!-- Slide 1 -->
-    <div class="mySlides fade" style="display: block;"> <!-- Set display to block for default slide -->
-      <div class="row">
-        <div class="left">
-          <img src="assets\img\PEARL.jpg" alt="PEARL">
-        </div>
-        <div class="right">
-          <h1>PEARL</h1>
-          <p>Good for 1-2 pax<br>
-            Including packages:<br>
-            Queen size bed<br>
-            Personal refrigerator<br>
-            Private restroom<br>
-            Private kitchen<br>
-            TV with cignal cable<br></p>
-        </div>
+    <div class="card">
+      <div class="card-body">
+        <!-- Slides with captions -->
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="assets/img/sample.jpg" class="d-block w-100" alt="test">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>Some representative placeholder content for the first slide.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="assets/img/sample.jpg" class="d-block w-100" alt="test">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Second slide label</h5>
+                <p>Some representative placeholder content for the second slide.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="assets/img/sample.jpg" class="d-block w-100" alt="test">
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Third slide label</h5>
+                <p>Some representative placeholder content for the third slide.</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+
+        </div><!-- End Slides with captions -->
+
       </div>
     </div>
 
-    <!-- Slide 2 -->
-    <div class="mySlides fade">
-      <div class="row">
-        <div class="left">
-          <h1>BREEZE</h1>
-          <p>Good for 3-5 pax<br>
-            Including packages:<br>
-            2 Queen size bed with pull out<br>
-            Personal refrigerator<br>
-            Private restroom<br>
-            Private kitchen<br>
-            TV with cignal cable<br>
-            PS4 games</p>
-        </div>
-        <div class="right">
-          <img src="assets\img\BREEZE.jpg" alt="BREEZE">
+    <div id="calendar-reservation-container">
+      <div id="calendar-container">
+        <div id="calendar"></div>
+      </div>
+      <div id="reservation-container">
+        <div class="reservation-form">
+          <h2>Make a Reservation</h2>
+          <!-- Reservation Form -->
+          <form id="reservationForm">
+            <label for="reservationStartDate">Start Date:</label>
+            <input type="text" id="reservationStartDate" name="reservationStartDate" readonly>
+            <label for="reservationEndDate">End Date:</label>
+            <input type="text" id="reservationEndDate" name="reservationEndDate" readonly>
+
+            <label for="villaOption">Select Villa:</label>
+            <select id="villaOption" name="villaOption">
+              <option value="Villa 1">PEARL</option>
+              <option value="Villa 2">BREEZE</option>
+              <option value="Villa 3">HAVEN</option>
+            </select>
+            <label for="startTime">Start Time:</label>
+            <input type="time" id="startTime" name="startTime">
+            <label for="endTime">End Time:</label>
+            <input type="time" id="endTime" name="endTime">
+            <button type="submit">Submit</button>
+          </form>
         </div>
       </div>
     </div>
-
-    <!-- Slide 3 -->
-    <div class="mySlides fade">
-      <div class="row">
-        <div class="left">
-          <img src="assets\img\HAVEN.jpg" alt="HAVEN">
-        </div>
-        <div class="right">
-          <h1>HAVEN</h1>
-          <p>Good for 7-10 pax<br>
-            Including packages:<br>
-            3 Queen size bed and 2 double deck<br>
-            Personal refrigerator<br>
-            Private restroom<br>
-            Private kitchen<br>
-            TV with cignal cable<br>
-            PS4 and XBOX games<br></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Navigation arrows -->
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-  </div>
-</div>
-
-
-
-<!-- Calendar and Reservation Form Container -->
-<div id="calendar-reservation-container">
-  <!-- Calendar Container -->
-  <div id="calendar-container">
-    <div id="calendar"></div>
-  </div>
-  <!-- Reservation Form Container -->
-  <div id="reservation-container">
-    <div id="reservationModal" class="modal">
-      <div class="modal-content">
-        <h2>Make a Reservation</h2>
-        <!-- Reservation Form -->
-        <form id="reservationForm">
-          <label for="reservationDate">Reservation Date:</label>
-          <input type="text" id="reservationDate" name="reservationDate" readonly>
-          <label for="villaOption">Select Villa:</label>
-          <select id="villaOption" name="villaOption">
-            <option value="Villa 1">PEARL</option>
-            <option value="Villa 2">BREEZE</option>
-            <option value="Villa 3">HAVEN</option>
-          </select>
-          <label for="startTime ">Start Time:</label>
-          <input type="time" id="startTime" name="startTime">
-          <label for="endTime">End Time:</label>
-          <input type="time" id="endTime" name="endTime">
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
   </main><!-- End #main -->
 
@@ -298,6 +219,7 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
