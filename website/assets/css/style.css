@@ -1660,33 +1660,3 @@ button.prev:hover, button.next:hover {
 }
 
 
-.card {
-  display: flex;
-  flex-direction: row;
-  background: linear-gradient(45deg, #f3ec78, #af4261);
-  border: none;
-}
-
-.card-img-left {
-  width: 40%;
-  object-fit: cover;
-}
-
-.card-body {
-  flex: 1;
-}
-
-.card-title {
-  font-size: 1.25rem;
-  font-weight: bold;
-}
-
-.card-text {
-  font-size: 0.875rem;
-  color: #333;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border: none;
-}
