@@ -31,7 +31,7 @@
     &quot;accountId&quot;: &quot;95a7b12d-7e40-42bf-847b-a8855a27aa91&quot;
   }
 }</component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php-8.3.6\php.exe">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/../../../../../../../php-8.2.18" />
     </include_path>
@@ -107,8 +107,6 @@
       <workItem from="1714415637057" duration="1070000" />
       <workItem from="1714456987264" duration="1540000" />
       <workItem from="1714801497289" duration="900000" />
-      <workItem from="1715602295917" duration="136000" />
-      <workItem from="1715607153121" duration="10655000" />
     </task>
     <task id="LOCAL-00001" summary="Revert Back because i am mad">
       <option name="closed" value="true" />
