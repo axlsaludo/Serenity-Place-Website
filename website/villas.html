@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>The Serenity Place Booking</title>
+  <title>Inner Page - OnePage Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -14,7 +14,7 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -24,18 +24,52 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- FullCalendar CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- FullCalendar JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+  <!-- Additional CSS for Custom Cards -->
+  <style>
+    .container-card {
+      padding-top: 50px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: row;
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    }
+
+    .card-img-left {
+      width: 40%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      flex: 1;
+      padding: 20px;
+      position: relative;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .card-text {
+      font-size: 0.875rem;
+      color: #333;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+  </style>
 </head>
 
 <body>
@@ -43,122 +77,68 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
-
-      <h1 class="logo"><a href="index.html">The Serenity Place</a></h1>
-      </div>
+      <h1 class="logo"><a href="index.html">OnePage</a></h1>
+    </div>
   </header><!-- End Header -->
 
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <!-- Breadcrumb content -->
+    <section class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Inner Page</h2>
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Inner Page</li>
+          </ol>
+        </div>
+      </div>
     </section><!-- End Breadcrumbs -->
 
-  <!-- ======= Villas Container ======= -->
-
-    <div class="card">
-      <div class="card-body">
-        <!-- Slides with captions -->
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="assets/img/sample.jpg" class="d-block w-100" alt="test">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>Some representative placeholder content for the first slide.</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="assets/img/sample.jpg" class="d-block w-100" alt="test">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Some representative placeholder content for the second slide.</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="assets/img/sample.jpg" class="d-block w-100" alt="test">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
+    <section class="inner-page">
+      <div class="container-card">
+        <div class="row">
+          <!-- Card 1 -->
+          <div class="col-12">
+            <div class="card mb-4">
+              <img src="assets/img/sample.jpg" class="card-img-left" alt="Villa 1">
+              <div class="card-body">
+                <h5 class="card-title">Villa Name 1</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="villa1.html" class="btn btn-primary">Choose Villa 1</a>
               </div>
             </div>
           </div>
-
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-
-        </div><!-- End Slides with captions -->
-
-      </div>
-    </div>
-
-    <!-- Calendar View -->
-    <main>
-      <div id="calendar-reservation-container">
-        <div id="calendar-container">
-          <div id="calendar"></div>
-        </div>
-        <div id="reservation-container">
-          <div class="reservation-form">
-            <h2>Make a Reservation</h2>
-            <form id="reservationForm">
-              <label for="reservationStartDate">Arrival Date:</label>
-              <input type="text" id="reservationStartDate" name="reservationStartDate" readonly>
-
-              <label for="reservationEndDate">Departure Date:</label>
-              <input type="text" id="reservationEndDate" name="reservationEndDate" readonly>
-
-              <hr>
-
-              <div class="time-container">
-                <div class="time-input">
-                  <label for="startTime">Start Time:</label>
-                  <input type="time" id="startTime" name="startTime">
-                </div>
-
-                <div class="time-input">
-                  <label for="endTime">End Time:</label>
-                  <input type="time" id="endTime" name="endTime">
-                </div>
+          <!-- Card 2 -->
+          <div class="col-12">
+            <div class="card mb-4">
+              <img src="assets/img/sample.jpg" class="card-img-left" alt="Villa 2">
+              <div class="card-body">
+                <h5 class="card-title">Villa Name 2</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="villa2.html" class="btn btn-primary">Choose Villa 2</a>
               </div>
-
-              <hr>
-
-              <div class="guests">
-                <div class="guests-input">
-                  <label for="adultsCount">Adults:</label>
-                  <input type="number" id="adultsCount" name="adultsCount" min="1" max="10">
-                </div>
-
-                <div class="guests-input">
-                  <label for="childrenCount">Children:</label>
-                  <input type="number" id="childrenCount" name="childrenCount" min="0" max="10">
-                </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="col-12">
+            <div class="card mb-4">
+              <img src="assets/img/sample.jpg" class="card-img-left" alt="Villa 3">
+              <div class="card-body">
+                <h5 class="card-title">Villa Name 3</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="villa3.html" class="btn btn-primary">Choose Villa 3</a>
               </div>
-
-              <button type="submit">Submit</button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
-    </main><!-- End #main -->
-
+    </section>
+  </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -209,13 +189,12 @@
     </div>
 
     <div class="container d-md-flex py-4">
-
       <div class="me-md-auto text-center text-md-start">
         <div class="copyright">
           &copy; Copyright <strong><span>OnePage</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
@@ -226,9 +205,9 @@
         <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
     </div>
-    
   </footer><!-- End Footer -->
-<div id="preloader"></div>
+
+  <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -239,64 +218,9 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
-
-<!-- Custom Script -->
-<script>
-  $(document).ready(function() {
-    var calendar = $('#calendar').fullCalendar({
-      // FullCalendar options here
-      // For example:
-      defaultView: 'month',
-      selectable: true,
-      select: function(start, end) {
-        $('#reservationModal').css('display', 'block');
-        $('#reservationDate').val(start.format('YYYY-MM-DD'));
-      }
-    });
-
-    // Close modal when clicking on close button
-    $('.close').on('click', function(event) {
-      $('#reservationModal').css('display', 'none');
-    });
-
-    // Submit reservation form
-    $('#reservationForm').on('submit', function(event) {
-      event.preventDefault();
-      var villaOption = $('#villaOption').val();
-      var reservationDate = $('#reservationDate').val();
-      var startTime = $('#startTime').val();
-      var endTime = $('#endTime').val();
-      // Add your reservation submission logic here
-      alert('Reservation submitted successfully!\nVilla: ' + villaOption + '\nDate: ' + reservationDate + '\nStart Time: ' + startTime + '\nEnd Time: ' + endTime);
-      
-      // Render event on calendar
-      calendar.fullCalendar('renderEvent', {
-        title: villaOption,
-        start: reservationDate + 'T' + startTime,
-        end: reservationDate + 'T' + endTime
-      }, true);
-    });
-
-    // Prevent modal from closing when clicking inside it
-    $('#reservationModal .modal-content').on('click', function(event) {
-      event.stopPropagation(); // Prevents the event from bubbling up
-    });
-
-    // Prevent modal from closing when clicking on the modal background overlay
-    $('#reservationModal').on('click', function(event) {
-      if (event.target === this) {
-        event.stopPropagation(); // Prevents the event from bubbling up
-      }
-    });
-  });
-</script>
-
-
 
 </body>
 
