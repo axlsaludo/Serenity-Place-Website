@@ -267,79 +267,37 @@
 
 })()
 
-  /**
-     * JS for villas slideshow
-     */
+let nextButton = document.querySelector('.nav-next');
+let prevButton = document.querySelector('.nav-prev');
 
-var slideIndex = 1;
-var slideTimer;
+nextButton.addEventListener('click', function(){
+    let items = document.querySelectorAll('.slide-item');
+    document.querySelector('.image-slider').appendChild(items[0]);
+});
 
-showSlides(slideIndex);
+prevButton.addEventListener('click', function(){
+    let items = document.querySelectorAll('.slide-item');
+    document.querySelector('.image-slider').prepend(items[items.length - 1]);
+});
 
-// Next/previous controls
-function plusSlides(n) {
-  clearTimeout(slideTimer); // Clear the timer
-  showSlides((slideIndex += n), n > 0 ? "next" : "prev"); // Pass the direction of the transition
-}
+/**
+ *  Slideshow
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  let nextButton = document.querySelector('.next');
+  let prevButton = document.querySelector('.prev');
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('.card');
+  const totalSlides = slides.length;
 
-// Thumbnail image controls
-function currentSlide(n) {
-  clearTimeout(slideTimer); // Clear the timer
-  showSlides((slideIndex = n));
-}
-
-// Function to display slides
-function showSlides(n, direction) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {
-    slideIndex = 1;
-  }
-  if (n < 1) {
-    slideIndex = slides.length;
-  }
-  
-  // Hide all slides
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-
-  // Calculate the direction of animation
-  var animClass = direction === "next" ? "uncover-right" : "uncover-left";
-  
-  // Display the current slide with animation
-  slides[slideIndex - 1].style.display = "block";
-  slides[slideIndex - 1].classList.add(animClass);
-
-  // Start slideshow timer
-  slideTimer = setTimeout(function () {
-    plusSlides(1);
-  }, 5000); // Change image every 5 seconds
-}
-
-
-  
-  /**
-     * JS for coonected slideshow and reservation name
-     */
-
-  $(document).ready(function() {
-    // Function to update slideshow based on selected villa
-    function updateSlideshow(villa) {
-      // Hide all slides
-      $('.mySlides').hide();
-      // Show the slide corresponding to the selected villa
-      $('#' + villa).show();
-    }
-  
-    // Event listener for villa selection dropdown
-    $('#villaOption').on('change', function() {
-      var selectedVilla = $(this).val();
-      // Call the function to update the slideshow
-      updateSlideshow(selectedVilla);
-    });
-  
-    // Rest of your existing code...
-  
+  nextButton.addEventListener('click', function() {
+    slideIndex = (slideIndex + 1) % totalSlides;
+    document.querySelector('.carousel-slide').style.transform = `translateX(-${slideIndex * 100}%)`;
   });
-  
+
+  prevButton.addEventListener('click', function() {
+    slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+    document.querySelector('.carousel-slide').style.transform = `translateX(-${slideIndex * 100}%)`;
+  });
+});
+
