@@ -108,7 +108,7 @@ h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-#header {
+#header-main {
   transition: all 0.5s;
   background: #fff;
   z-index: 997;
@@ -116,12 +116,12 @@ h6 {
   border-bottom: 1px solid #e6f2fb;
 }
 
-#header.header-scrolled {
+#header-main.header-scrolled {
   border-color: #fff;
   box-shadow: 0px 2px 15px rgba(18, 66, 101, 0.08);
 }
 
-#header .logo {
+#header-main .logo {
   font-size: 28px;
   margin: 0;
   padding: 0;
@@ -131,16 +131,16 @@ h6 {
   font-family: "Poppins", sans-serif;
 }
 
-#header .logo a {
+#header-main .logo a {
   color: #16507b;
 }
 
-#header .logo img {
+#header-main .logo img {
   max-height: 40px;
 }
 
 @media (max-width: 992px) {
-  #header .logo {
+  #header-main .logo {
     font-size: 28px;
   }
 }
