@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2504870f-f316-47ea-a0e4-186210233628" name="Changes" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +26,12 @@
     &quot;assignee&quot;: &quot;ewanmoak&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ewanmoak/Serenity-Place-Website.git",
-    "accountId": "58c11ccc-d035-4588-80f6-1fd6fb11bdc1"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ewanmoak/Serenity-Place-Website.git&quot;,
+    &quot;accountId&quot;: &quot;58c11ccc-d035-4588-80f6-1fd6fb11bdc1&quot;
   }
-}]]></component>
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
       <path value="$PROJECT_DIR$/../../../../../../../php-8.2.18" />
@@ -58,7 +59,7 @@
     "PHP Script.index.html.executor": "Run",
     "PHP Script.index.php.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "henrocker-patch-1",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/xampp/htdocs/Serenity-Place-Website",
     "node.js.detected.package.eslint": "true",
@@ -108,6 +109,7 @@
       <workItem from="1714456987264" duration="1540000" />
       <workItem from="1714801497289" duration="900000" />
       <workItem from="1716003659088" duration="120000" />
+      <workItem from="1716010905991" duration="372000" />
     </task>
     <task id="LOCAL-00001" summary="Revert Back because i am mad">
       <option name="closed" value="true" />
