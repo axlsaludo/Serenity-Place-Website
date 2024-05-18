@@ -26,12 +26,18 @@
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
-  <!-- FullCalendar CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
+    <!-- FullCalendar CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+  
+    <!-- FullCalendar JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+  
 
   <!-- Template Main CSS File -->
   <link href="assets/css/admin.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -40,9 +46,6 @@
   <div class="container d-flex align-items-center justify-content-between">
     <h1 class="logo"><a href="index.html">The Serenity Place</a></h1>
     <nav id="navbar" class="navbar">
-      <ul>
-        <li><a class="getstarted scrollto" href="profile.html">My Profile</a></li>
-      </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>
     <!-- .navbar -->
@@ -112,7 +115,6 @@
                 <!-- Calendar Body -->
                 <div class="card-body">
                   <h5 class="card-title">Booking Calendar</h5>
-                  <!-- Calendar Container -->
                   <div id="calendar-container">
                     <div id="calendar"></div>
                   </div>
@@ -302,29 +304,6 @@
 
   </main><!-- End #main -->
 
-
-
-<!-- ======= Footer ======= -->
-<footer id="footer">
-
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>The Serenity Place</h3>
-          <p>
-            Dao Street, San Isidro <br>
-            Lipa City, Batangas<br>
-            Philippines<br><br>
-            <strong>Phone:</strong> +63 923 346 6306<br>
-            <strong>Email:</strong> theserenityplacelipa@gmail.com<br>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer><!-- End Footer -->
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -349,6 +328,40 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/admin.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      var calendar = $('#calendar').fullCalendar({
+        defaultView: 'month',
+        selectable: true,
+        select: function(start, end) {
+          $('#reservationStartDate').val(start.format('YYYY-MM-DD'));
+          $('#reservationEndDate').val(end.format('YYYY-MM-DD'));
+        }
+      });
+
+      $('#reservationFormModal').on('submit', function(event) {
+        event.preventDefault();
+        var villaOption = $('#villaOption').val();
+        var reservationDate = $('#reservationDate').val();
+        var startTime = $('#startTime').val();
+        var endTime = $('#endTime').val();
+
+        // Render event on calendar
+        calendar.fullCalendar('renderEvent', {
+          title: villaOption,
+          start: reservationDate + 'T' + startTime,
+          end: reservationDate + 'T' + endTime
+        }, true);
+
+        $('#reservationModal').modal('hide');
+      });
+
+      $('.close').on('click', function() {
+        $('#reservationModal').modal('hide');
+      });
+    });
+  </script>
 
 </body>
 
