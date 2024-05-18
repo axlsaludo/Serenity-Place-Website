@@ -1659,4 +1659,10 @@ button.prev:hover, button.next:hover {
   }
 }
 
-
+.location-thanks{
+  margin: 20px;
+  padding: 10px;
+  box-shadow: 0.1px 1px 4px 8px rgba(114, 114, 114, 0.064); /* Shadow for depth */
+  border-radius: 10px; /* Smoothed corners for aesthetics */
+  position: relative; /* For positioning content */
+}
