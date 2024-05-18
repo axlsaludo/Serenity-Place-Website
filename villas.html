@@ -34,16 +34,19 @@
     }
 
     .card {
+      margin: 15px;
       display: flex;
       flex-direction: row;
-      border: none;
+      border: 1px solid #e0e0e0;
       border-radius: 10px;
       overflow: hidden;
       margin-bottom: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .card-img-left {
-      width: 40%;
+      width: 30%;
       object-fit: cover;
     }
 
@@ -68,16 +71,49 @@
       border: none;
     }
 
-    .card-villa-1 {
-      background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #28a745;
     }
 
-    .card-villa-2 {
-      background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1));
+    .old-price {
+      font-size: 1rem;
+      text-decoration: line-through;
+      color: #888;
     }
 
-    .card-villa-3 {
-      background: linear-gradient(to right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3));
+    .ratings {
+      display: flex;
+      align-items: center;
+    }
+
+    .stars {
+      color: #ffc107;
+      margin-right: 5px;
+    }
+
+    .reviews {
+      font-size: 0.875rem;
+      color: #666;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+    }
+
+    .free-shipping {
+      font-size: 0.875rem;
+      color: #28a745;
+      font-weight: bold;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
     }
   </style>
 </head>
@@ -99,82 +135,125 @@
     </div>
   </section><!-- End Breadcrumbs -->
 
+  <div class="section-title">
+    <h2>Villas</h2>
+    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+  </div>
+
   <section class="inner-page">
     <div class="container-card">
       <div class="row">
         <!-- Card 1 -->
         <div class="col-12">
-          <div class="card card-villa-1 mb-4">
+          <div class="card mb-4">
             <img src="assets/img/sample.jpg" class="card-img-left" alt="Villa 1">
             <div class="card-body">
-              <h5 class="card-title">Villa Name 1</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="schedule.html" class="btn btn-primary">Choose Villa 1</a>
+              <h5 class="card-title">Villa 1</h5>
+              <div class="ratings">
+                <div class="stars">★★★★★</div>
+                <div class="reviews">310</div>
+              </div>
+              <p class="card-text">100% cotton • Light weight • Best finish<br>Unique design • For men • Casual<br>There are many variations of passages of Lorem Ipsum available, but...</p>
+              <div class="card-footer">
+                <div>
+                  <div class="price">$13.99</div
+                    <div class="old-price">$20.99</div>
+                  </div>
+                  <div class="btn-group">
+                    <a href="details.html" class="btn btn-primary">Details</a>
+                   </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="col-12">
-          <div class="card card-villa-2 mb-4">
-            <img src="assets/img/sample.jpg" class="card-img-left" alt="Villa 2">
-            <div class="card-body">
-              <h5 class="card-title">Villa Name 2</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="schedule.html" class="btn btn-primary">Choose Villa 2</a>
+
+          <div class="col-12">
+            <div class="card mb-4">
+              <img src="assets/img/sample.jpg" class="card-img-left" alt="Villa 1">
+              <div class="card-body">
+                <h5 class="card-title">Villa 2</h5>
+                <div class="ratings">
+                  <div class="stars">★★★★★</div>
+                  <div class="reviews">310</div>
+                </div>
+                <p class="card-text">100% cotton • Light weight • Best finish<br>Unique design • For men • Casual<br>There are many variations of passages of Lorem Ipsum available, but...</p>
+                <div class="card-footer">
+                  <div>
+                    <div class="price">$13.99</div
+                      <div class="old-price">$20.99</div>
+                    </div>
+                    <div class="btn-group">
+                      <a href="details.html" class="btn btn-primary">Details</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+
+            <div class="col-12">
+              <div class="card mb-4">
+                <img src="assets/img/sample.jpg" class="card-img-left" alt="Villa 1">
+                <div class="card-body">
+                  <h5 class="card-title">Villa 3</h5>
+                  <div class="ratings">
+                    <div class="stars">★★★★★</div>
+                    <div class="reviews">310</div>
+                  </div>
+                  <p class="card-text">100% cotton • Light weight • Best finish<br>Unique design • For men • Casual<br>There are many variations of passages of Lorem Ipsum available, but...</p>
+                  <div class="card-footer">
+                    <div>
+                      <div class="price">$13.99</div
+                        <div class="old-price">$20.99</div>
+                      </div>
+                      <div class="btn-group">
+                        <a href="details.html" class="btn btn-primary">Details</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
         </div>
-        <!-- Card 3 -->
-        <div class="col-12">
-          <div class="card card-villa-3 mb-4">
-            <img src="assets/img/sample.jpg" class="card-img-left" alt="Villa 3">
-            <div class="card-body">
-              <h5 class="card-title">Villa Name 3</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="schedule.html" class="btn btn-primary">Choose Villa 3</a>
+      </div>
+    </section>
+    </main><!-- End #main -->
+  
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 footer-contact">
+              <h3>The Serenity Place</h3>
+              <p>
+                Dao Street, San Isidro <br>
+                Lipa City, Batangas<br>
+                Philippines<br><br>
+                <strong>Phone:</strong> +63 923 346 6306<br>
+                <strong>Email:</strong> theserenityplacelipa@gmail.com<br>
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>The Serenity Place</h3>
-            <p>
-              Dao Street, San Isidro <br>
-              Lipa City, Batangas<br>
-              Philippines<br><br>
-              <strong>Phone:</strong> +63 923 346 6306<br>
-              <strong>Email:</strong> theserenityplacelipa@gmail.com<br>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+    </footer><!-- End Footer -->
+  
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+  
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+  
+  </body>
+  
+  </html>
+  
