@@ -23,6 +23,23 @@ if (!isset($_SESSION['loggedin'])) {
     exit();
 }
 
+// Create Bookings table if it doesn't exist
+$sql = "CREATE TABLE IF NOT EXISTS Bookings (
+    booking_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    villa_id INT NOT NULL,
+    check_in_date DATE NOT NULL,
+    check_out_date DATE NOT NULL,
+    time_in TIME NOT NULL,
+    time_out TIME NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    booking_status ENUM('confirmed', 'cancelled', 'pending') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)";
+if ($conn->query($sql) !== TRUE) {
+    die("Error creating table: " . $conn->error);
+}
+
 // Get form data
 $villa_id = $_POST['villa_id'];
 $check_in_date = $_POST['check_in_date'];
