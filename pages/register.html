@@ -9,8 +9,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -22,11 +22,23 @@
   <link href="../assets/vendor/admin/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet">
   <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="../admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="../assets/css/admin.css" rel="stylesheet">
+
+  <!-- Custom CSS for modal blur effect -->
+  <style>
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    body.modal-open .modal-backdrop {
+      filter: blur(5px);
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  </style>
 </head>
 
 <body>
@@ -52,8 +64,7 @@
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <!-- Replace with your HTML registration form -->
-                  <form action="forms/register.php" method="post" class="row g-3 needs-validation" novalidate>
+                  <form action="../forms/register.php" method="post" class="row g-3 needs-validation" novalidate>
                     <div class="col-12">
                       <label for="yourName" class="form-label">Your Name</label>
                       <input type="text" name="name" class="form-control" id="yourName" required>
@@ -107,21 +118,50 @@
     </div>
   </main><!-- End #main -->
 
+  <!-- Modal for error messages -->
+  <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">Error</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="errorMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="../assets/vendor/admin/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../admin/assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="../assets/vendor/echarts/echarts.min.js"></script>
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/quill/quill.js"></script>
   <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="../admin/assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="../assets/js/admin.js"></script>
+
+  <!-- Show the error modal if there's an error -->
+  <script>
+    $(document).ready(function() {
+      const errorMessage = "<?php if (isset($_SESSION['error'])) { echo $_SESSION['error']; unset($_SESSION['error']); } ?>";
+      if (errorMessage) {
+        $('#errorMessage').text(errorMessage);
+        $('#errorModal').modal('show');
+      }
+    });
+  </script>
 
 </body>
 

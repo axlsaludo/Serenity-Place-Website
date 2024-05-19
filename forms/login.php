@@ -41,14 +41,14 @@ if ($result->num_rows > 0) {
 
     // Redirect based on username and password
     if ($username == 'admin' && $password == 'admin') {
-        header("Location: admin.html");
+        header("Location: ../pages/admin.html");
     } else {
-        header("Location: villas.html");
+        header("Location: ../pages/villas.html");
     }
 } else {
     // Invalid credentials, redirect back to login page with an error message
     $_SESSION['error'] = "Wrong username or password";
-    header("Location: login.html");
+    header("Location: ../pages/login.html");
 }
 
 $conn->close();

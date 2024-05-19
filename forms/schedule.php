@@ -23,7 +23,7 @@ if ($conn->connect_error) {
 // Check if user is logged in
 if (!isset($_SESSION['loggedin'])) {
     header("Location: ../pages/login.html");
-    exit();
+    exit(); 
 }
 
 // Create Bookings table if it doesn't exist

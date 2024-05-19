@@ -1,11 +1,10 @@
 <?php
+// Start session
 session_start();
 
-if (!isset($_SESSION['loggedin'])) {
-    echo "Access denied. You must log in first.";
-    header("Location: login.html");
-    exit();
-}
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Database connection
 $servername = "localhost"; // Your MySQL server name
@@ -21,113 +20,52 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get booking ID from query parameter
-$booking_id = $_GET['booking_id'];
-
-// Retrieve booking details from database
-$sql = "SELECT * FROM Bookings WHERE booking_id = $booking_id";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    $booking = $result->fetch_assoc();
-} else {
-    echo "Booking not found.";
+// Check if user is logged in
+if (!isset($_SESSION['loggedin'])) {
+    header("Location: ../pages/login.html"); // Correct path to login.html
     exit();
 }
 
-// Replace with your actual PayMongo API keys
-$secret_key = 'sk_test_xxxxxxx';
-$public_key = 'pk_test_xxxxxxx';
-
-// Get payment details from POST request
-$name = $_POST['cc-name'];
-$number = $_POST['cc-number'];
-$expiry = $_POST['cc-expiration'];
-$cvv = $_POST['cc-cvv'];
-$amount = $booking['total_amount'];
-
-// Create Payment Intent
-$intent_data = array(
-    'data' => array(
-        'attributes' => array(
-            'amount' => $amount * 100, // Amount in centavos
-            'payment_method_allowed' => array('card'),
-            'payment_method_options' => array(
-                'card' => array(
-                    'request_three_d_secure' => 'any'
-                )
-            ),
-            'currency' => 'PHP' // Hard-coded currency
-        )
-    )
-);
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'https://api.paymongo.com/v1/payment_intents');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($intent_data));
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_USERPWD, $secret_key . ':' . '');
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
-$response = curl_exec($ch);
-if (curl_errno($ch)) {
-    echo 'Error:' . curl_error($ch);
+// Create Bookings table if it doesn't exist
+$sql = "CREATE TABLE IF NOT EXISTS Bookings (
+    booking_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    villa_id INT NOT NULL,
+    check_in_date DATE NOT NULL,
+    check_out_date DATE NOT NULL,
+    time_in TIME NOT NULL,
+    time_out TIME NOT NULL,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    booking_status ENUM('confirmed', 'cancelled', 'pending') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)";
+if ($conn->query($sql) !== TRUE) {
+    die("Error creating Bookings table: " . $conn->error);
 }
-curl_close($ch);
 
-$response_data = json_decode($response, true);
-$intent_id = $response_data['data']['id'];
-$client_key = $response_data['data']['attributes']['client_key'];
+// Get form data
+$villa_id = $_POST['villa_id'];
+$check_in_date = $_POST['check_in_date'];
+$check_out_date = $_POST['check_out_date'];
+$time_in = $_POST['time_in'];
+$time_out = $_POST['time_out'];
+$total_amount = $_POST['total_amount'];
+$booking_status = 'pending'; // Default status
+$username = $_SESSION['username'];
 
-// Confirm Payment Intent
-$confirm_data = array(
-    'data' => array(
-        'attributes' => array(
-            'payment_method' => array(
-                'type' => 'card',
-                'billing' => array(
-                    'address' => array(
-                        'line1' => 'test',
-                        'city' => 'test',
-                        'country' => 'PH'
-                    ),
-                    'name' => $name,
-                    'phone' => '1234567890',
-                    'email' => 'test@example.com'
-                ),
-                'details' => array(
-                    'card_number' => $number,
-                    'exp_month' => substr($expiry, 0, 2),
-                    'exp_year' => substr($expiry, -2),
-                    'cvc' => $cvv
-                )
-            )
-        )
-    )
-);
+// Insert booking into database
+$sql = "INSERT INTO Bookings (username, villa_id, check_in_date, check_out_date, time_in, time_out, total_amount, booking_status)
+        VALUES ('$username', '$villa_id', '$check_in_date', '$check_out_date', '$time_in', '$time_out', '$total_amount', '$booking_status')";
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.paymongo.com/v1/payment_intents/$intent_id/attach");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($confirm_data));
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_USERPWD, $secret_key . ':' . '');
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Authorization: Bearer ' . $client_key));
-
-$response = curl_exec($ch);
-if (curl_errno($ch)) {
-    echo 'Error:' . curl_error($ch);
-}
-curl_close($ch);
-
-$response_data = json_decode($response, true);
-$status = $response_data['data']['attributes']['status'];
-
-if ($status == 'succeeded') {
-    // Payment successful, redirect to success page
-    header("Location: payment_success.html");
+if ($conn->query($sql) === TRUE) {
+    // Get the booking ID of the last inserted record
+    $booking_id = $conn->insert_id;
+    // Redirect to mock payment page with the booking ID as a query parameter
+    header("Location: ../pages/payment.html?booking_id=$booking_id"); // Correct path to payment.html
+    exit();
 } else {
-    // Payment failed, redirect to failure page
-    header("Location: payment_failure.html");
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
+
+$conn->close();
 ?>
