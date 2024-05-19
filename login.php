@@ -16,6 +16,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Create users table if it doesn't exist
+$tableCheckQuery = "CREATE TABLE IF NOT EXISTS users (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(30) NOT NULL,
+    password VARCHAR(255) NOT NULL
+)";
+if ($conn->query($tableCheckQuery) === FALSE) {
+    die("Error creating table: " . $conn->error);
+}
+
 // Get username and password from form
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -25,9 +35,16 @@ $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'"
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // Credentials are valid, set session variable and redirect to admin.html
+    // Credentials are valid, set session variable
     $_SESSION['loggedin'] = true;
-    header("Location: admin.html");
+    $_SESSION['username'] = $username;
+
+    // Redirect based on username and password
+    if ($username == 'admin' && $password == 'admin') {
+        header("Location: admin.html");
+    } else {
+        header("Location: villas.html");
+    }
 } else {
     // Invalid credentials, redirect back to login page with an error message
     $_SESSION['error'] = "Wrong username or password";

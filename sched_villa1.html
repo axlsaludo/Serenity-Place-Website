@@ -33,7 +33,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 
-
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
@@ -144,24 +143,26 @@
         <div id="reservation-container">
           <div class="reservation-form">
             <h2>Make a Reservation</h2>
-            <form id="reservationForm">
+            <form id="reservationForm" action="submit_reservation.php" method="POST">
+              <input type="hidden" id="villa_id" name="villa_id" value="1"> <!-- Static Villa ID -->
+              
               <label for="reservationStartDate">Arrival Date:</label>
-              <input type="text" id="reservationStartDate" name="reservationStartDate" readonly>
+              <input type="text" id="reservationStartDate" name="check_in_date" readonly>
 
               <label for="reservationEndDate">Departure Date:</label>
-              <input type="text" id="reservationEndDate" name="reservationEndDate" readonly>
+              <input type="text" id="reservationEndDate" name="check_out_date" readonly>
 
               <hr>
 
               <div class="time-container">
                 <div class="time-input">
                   <label for="startTime">Start Time:</label>
-                  <input type="time" id="startTime" name="startTime">
+                  <input type="time" id="startTime" name="time_in">
                 </div>
 
                 <div class="time-input">
                   <label for="endTime">End Time:</label>
-                  <input type="time" id="endTime" name="endTime">
+                  <input type="time" id="endTime" name="time_out">
                 </div>
               </div>
 
@@ -169,13 +170,8 @@
 
               <div class="guests">
                 <div class="guests-input">
-                  <label for="adultsCount">Adults:</label>
-                  <input type="number" id="adultsCount" name="adultsCount" min="1" max="10">
-                </div>
-
-                <div class="guests-input">
-                  <label for="childrenCount">Children:</label>
-                  <input type="number" id="childrenCount" name="childrenCount" min="0" max="10">
+                  <label for="total_amount">Total Amount:</label>
+                  <input type="number" id="total_amount" name="total_amount" min="1" required>
                 </div>
               </div>
 
@@ -220,32 +216,26 @@
         </div>
       </div>
     </div>
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>The Serenity Place</h3>
-            <p>
-              Dao Street, San Isidro <br>
-              Lipa City, Batangas<br>
-              Philippines<br><br>
-              <strong>Phone:</strong> +63 923 346 6306<br>
-              <strong>Email:</strong> theserenityplacelipa@gmail.com<br>
-            </p>
-          </div>
-        </div>
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>The Serenity Place</span></strong>. All Rights Reserved
       </div>
     </div>
   </footer><!-- End Footer -->
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
   <script>
@@ -259,25 +249,23 @@
         }
       });
 
-      $('#reservationFormModal').on('submit', function(event) {
+      $('#reservationForm').on('submit', function(event) {
         event.preventDefault();
-        var villaOption = $('#villaOption').val();
-        var reservationDate = $('#reservationDate').val();
-        var startTime = $('#startTime').val();
-        var endTime = $('#endTime').val();
+        var formData = $(this).serialize();
 
-        // Render event on calendar
-        calendar.fullCalendar('renderEvent', {
-          title: villaOption,
-          start: reservationDate + 'T' + startTime,
-          end: reservationDate + 'T' + endTime
-        }, true);
-
-        $('#reservationModal').modal('hide');
-      });
-
-      $('.close').on('click', function() {
-        $('#reservationModal').modal('hide');
+        $.ajax({
+          url: 'submit_reservation.php',
+          type: 'POST',
+          data: formData,
+          success: function(response) {
+            alert(response);
+            // Optionally, you can refresh the calendar to show the new booking
+            calendar.fullCalendar('refetchEvents');
+          },
+          error: function(xhr, status, error) {
+            alert('An error occurred: ' + error);
+          }
+        });
       });
     });
   </script>
