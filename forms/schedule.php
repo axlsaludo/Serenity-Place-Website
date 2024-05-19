@@ -2,6 +2,10 @@
 // Start session
 session_start();
 
+// Enable error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Database connection
 $servername = "localhost"; // Your MySQL server name
 $username = "root"; // Your MySQL username
@@ -57,7 +61,7 @@ if ($conn->query($sql) === TRUE) {
     // Get the booking ID of the last inserted record
     $booking_id = $conn->insert_id;
     // Redirect to mock payment page with the booking ID as a query parameter
-    header("Location: payment.html?booking_id=$booking_id");
+    header("Location: payment.html?booking_id=$booking_id"); // Update this path if payment.html is in a subdirectory
     exit();
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
