@@ -29,91 +29,88 @@
 
   <!-- Additional CSS for Custom Cards -->
   <style>
-    .container-card {
-      padding-top: 50px;
+    body {
+      background-color: #f8f9fa;
     }
 
-    .card {
-      margin: 15px;
-      display: flex;
-      flex-direction: row;
-      border: 1px solid #e0e0e0;
+    .card-listing {
+      background-color: #fff;
       border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 20px;
-      background-color: #ffffff;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin: 15px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      overflow: hidden;
     }
 
-    .card-img-left {
-      width: 30%;
+    .card-listing img {
+      width: 100%;
+      height: auto;
       object-fit: cover;
     }
 
-    .card-body {
+    .card-listing .details {
       flex: 1;
-      padding: 20px;
-      position: relative;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
     }
 
-    .card-title {
-      font-size: 1.25rem;
+    .card-listing h5 {
+      margin: 0 0 10px;
+      font-size: 1rem;
       font-weight: bold;
+      margin-top: 10px;
     }
 
-    .card-text {
+    .card-listing .card-text {
       font-size: 0.875rem;
       color: #333;
+      margin: 0 0 10px;
     }
 
-    .btn-primary {
-      background-color: #007bff;
-      border: none;
-    }
-
-    .price {
-      font-size: 1.5rem;
-      font-weight: bold;
+    .card-listing .price {
       color: #28a745;
+      font-weight: bold;
     }
 
-    .old-price {
-      font-size: 1rem;
+    .card-listing .old-price {
       text-decoration: line-through;
       color: #888;
+      margin-left: 10px;
     }
 
-    .ratings {
-      display: flex;
-      align-items: center;
+    .card-listing .btn-primary {
+      background-color: #007bff;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      text-align: center;
+      margin-top: auto;
+      margin-bottom: 10px;
     }
 
-    .stars {
-      color: #ffc107;
-      margin-right: 5px;
-    }
+    @media (min-width: 768px) {
+      .card-listing {
+        flex-direction: row;
+        height: 200px;
+      }
 
-    .reviews {
-      font-size: 0.875rem;
-      color: #666;
-    }
+      .card-listing img {
+        height: 100%;
+        width: auto;
+      }
 
-    .card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 10px;
-    }
+      .card-listing .details {
+        padding: 15px;
+      }
 
-    .free-shipping {
-      font-size: 0.875rem;
-      color: #28a745;
-      font-weight: bold;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 10px;
+      .card-listing .btn-primary {
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
@@ -140,119 +137,86 @@
     <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
   </div>
   <section class="inner-page">
-    <div class="container-card">
+    <div class="container">
       <div class="row">
         <!-- Card 1 -->
         <div class="col-12">
-          <div class="card mb-4">
-            <img src="assets/img/sample.jpg" class="card-img-left" alt="Villa 1">
-            <div class="card-body">
-              <h5 class="card-title">Villa 1</h5>
-              <div class="ratings">
-                <div class="stars">★★★★★</div>
-                <div class="reviews">310</div>
-              </div>
-              <p class="card-text">100% cotton • Light weight • Best finish<br>Unique design • For men • Casual<br>There are many variations of passages of Lorem Ipsum available, but...</p>
-              <div class="card-footer">
-                <div>
-                  <div class="price">$13.99</div
-                    <div class="old-price">$20.99</div>
-                  </div>
-                  <div class="btn-group">
-                    <a href="schedule.html" class="btn btn-primary">Details</a>
-                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-12">
-            <div class="card mb-4">
-              <img src="assets/img/sample.jpg" class="card-img-left" alt="Villa 1">
-              <div class="card-body">
-                <h5 class="card-title">Villa 2</h5>
-                <div class="ratings">
-                  <div class="stars">★★★★★</div>
-                  <div class="reviews">310</div>
-                </div>
-                <p class="card-text">100% cotton • Light weight • Best finish<br>Unique design • For men • Casual<br>There are many variations of passages of Lorem Ipsum available, but...</p>
-                <div class="card-footer">
-                  <div>
-                    <div class="price">$13.99</div
-                      <div class="old-price">$20.99</div>
-                    </div>
-                    <div class="btn-group">
-                      <a href="schedule.html" class="btn btn-primary">Details</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12">
-              <div class="card mb-4">
-                <img src="assets/img/sample.jpg" class="card-img-left" alt="Villa 1">
-                <div class="card-body">
-                  <h5 class="card-title">Villa 3</h5>
-                  <div class="ratings">
-                    <div class="stars">★★★★★</div>
-                    <div class="reviews">310</div>
-                  </div>
-                  <p class="card-text">100% cotton • Light weight • Best finish<br>Unique design • For men • Casual<br>There are many variations of passages of Lorem Ipsum available, but...</p>
-                  <div class="card-footer">
-                    <div>
-                      <div class="price">$13.99</div
-                        <div class="old-price">$20.99</div>
-                      </div>
-                      <div class="btn-group">
-                        <a href="schedule.html" class="btn btn-primary">Details</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-        </div>
-      </div>
-    </section>
-    </main><!-- End #main -->
-  
-    <!-- ======= Footer ======= -->
-    <footer id="footer">
-      <div class="footer-top">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-3 col-md-6 footer-contact">
-              <h3>The Serenity Place</h3>
-              <p>
-                Dao Street, San Isidro <br>
-                Lipa City, Batangas<br>
-                Philippines<br><br>
-                <strong>Phone:</strong> +63 923 346 6306<br>
-                <strong>Email:</strong> theserenityplacelipa@gmail.com<br>
-              </p>
+          <div class="card-listing">
+            <img src="assets/img/sample.jpg" alt="Villa 1">
+            <div class="details">
+              <h5>Villa 1</h5>
+              <p class="card-text">Discover the perfect getaway at Villa 1, an exquisite villa offering a blend of comfort and convenience. Our villa features 2 spacious rooms, 2 bathrooms, car parking for 2 SUVs, and an event space ideal for small events.</p>
+              <div class="price">₱13.99 <span class="old-price">₱20.99</span></div>
+              <a href="schedule.html" class="btn btn-primary">Details</a>
             </div>
           </div>
         </div>
+        
+        <!-- Card 2 -->
+        <div class="col-12">
+          <div class="card-listing">
+            <img src="assets/img/sample.jpg" alt="Villa 2">
+            <div class="details">
+              <h5>Villa 2</h5>
+              <p class="card-text">Experience luxury at Villa 2, featuring 3 spacious rooms, 2 bathrooms, ample car parking, and a serene environment for relaxation and events.</p>
+              <div class="price">₱14.99 <span class="old-price">₱21.99</span></div>
+              <a href="schedule.html" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-12">
+          <div class="card-listing">
+            <img src="assets/img/sample.jpg" alt="Villa 3">
+            <div class="details">
+              <h5>Villa 3</h5>
+              <p class="card-text">Villa 3 offers a peaceful retreat with 2 bedrooms, 1 bathroom, parking for 1 SUV, and a beautiful garden area perfect for small gatherings.</p>
+              <div class="price">₱15.99 <span class="old-price">₱22.99</span></div>
+              <a href="schedule.html" class="btn btn-primary">Details</a>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </footer><!-- End Footer -->
-  
-    <div id="preloader"></div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-  
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
-  
-  </body>
-  
-  </html>
-  
+    </div>
+  </section><!-- End Inner Page -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>The Serenity Place</h3>
+            <p>
+              Dao Street, San Isidro <br>
+              Lipa City, Batangas<br>
+              Philippines<br><br>
+              <strong>Phone:</strong> +63 923 346 6306<br>
+              <strong>Email:</strong> theserenityplacelipa@gmail.com<br>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
