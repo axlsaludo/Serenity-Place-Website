@@ -6,25 +6,28 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Database connection
-$servername = "localhost"; // Your MySQL server name
-$username = "root"; // Your MySQL username
-$password = ""; // Your MySQL password
-$dbname = "accounts"; // Your database name
+// Database connection details
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "accounts";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password);
 
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if user is logged in
-if (!isset($_SESSION['loggedin'])) {
-    header("Location: ../pages/login.html");
-    exit(); 
+// Create database if it doesn't exist
+$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
+if ($conn->query($sql) !== TRUE) {
+    die("Error creating database: " . $conn->error);
 }
+
+// Select the database
+$conn->select_db($dbname);
 
 // Create Bookings table if it doesn't exist
 $sql = "CREATE TABLE IF NOT EXISTS Bookings (
@@ -43,29 +46,41 @@ if ($conn->query($sql) !== TRUE) {
     die("Error creating Bookings table: " . $conn->error);
 }
 
-// Get form data
-$villa_id = $_POST['villa_id'];
-$check_in_date = $_POST['check_in_date'];
-$check_out_date = $_POST['check_out_date'];
-$time_in = $_POST['time_in'];
-$time_out = $_POST['time_out'];
-$total_amount = $_POST['total_amount'];
-$booking_status = 'pending'; // Default status
-$username = $_SESSION['username'];
-
-// Insert booking into database
-$sql = "INSERT INTO Bookings (username, villa_id, check_in_date, check_out_date, time_in, time_out, total_amount, booking_status)
-        VALUES ('$username', '$villa_id', '$check_in_date', '$check_out_date', '$time_in', '$time_out', '$total_amount', '$booking_status')";
-
-if ($conn->query($sql) === TRUE) {
-    // Get the booking ID of the last inserted record
-    $booking_id = $conn->insert_id;
-    // Redirect to mock payment page with the booking ID as a query parameter
-    header("Location: ../pages/payment.html?booking_id=$booking_id");
-    exit();
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+// Check if user is logged in
+if (!isset($_SESSION['loggedin'])) {
+    header("Location: ../pages/login.html");
+    exit(); 
 }
 
+// Get form data
+$villa_id = $_POST['villa_id'] ?? null;
+$check_in_date = $_POST['check_in_date'] ?? null;
+$check_out_date = $_POST['check_out_date'] ?? null;
+$time_in = $_POST['time_in'] ?? null;
+$time_out = $_POST['time_out'] ?? null;
+$total_amount = $_POST['total_amount'] ?? null;
+$booking_status = 'pending'; // Default status
+$username = $_SESSION['username'] ?? null;
+
+// Validate form data
+if (!$villa_id || !$check_in_date || !$check_out_date || !$time_in || !$time_out || !$total_amount || !$username) {
+    die("Missing form data.");
+}
+
+// Insert booking into database
+$stmt = $conn->prepare("INSERT INTO Bookings (username, villa_id, check_in_date, check_out_date, time_in, time_out, total_amount, booking_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sissssds", $username, $villa_id, $check_in_date, $check_out_date, $time_in, $time_out, $total_amount, $booking_status);
+
+if ($stmt->execute()) {
+    // Get the booking ID of the last inserted record
+    $booking_id = $stmt->insert_id;
+    // Redirect to schedule page with the booking ID as a query parameter
+    header("Location: schedule_page.php?booking_id=$booking_id");
+    exit();
+} else {
+    echo "Error: " . $stmt->error;
+}
+
+$stmt->close();
 $conn->close();
 ?>
