@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 
 // Check if user is logged in
 if (!isset($_SESSION['loggedin'])) {
-    header("Location: login.html");
+    header("Location: ../pages/login.html");
     exit();
 }
 
@@ -61,7 +61,7 @@ if ($conn->query($sql) === TRUE) {
     // Get the booking ID of the last inserted record
     $booking_id = $conn->insert_id;
     // Redirect to mock payment page with the booking ID as a query parameter
-    header("Location: payment.html?booking_id=$booking_id"); // Update this path if payment.html is in a subdirectory
+    header("Location: ../pages/payment.html?booking_id=$booking_id");
     exit();
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
