@@ -18,7 +18,6 @@ if ($conn->connect_error) {
 
 // Check if user is logged in
 if (!isset($_SESSION['loggedin'])) {
-    echo "Access denied. You must log in first.";
     header("Location: login.html");
     exit();
 }
@@ -37,7 +36,7 @@ $sql = "CREATE TABLE IF NOT EXISTS Bookings (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
 if ($conn->query($sql) !== TRUE) {
-    die("Error creating table: " . $conn->error);
+    die("Error creating Bookings table: " . $conn->error);
 }
 
 // Get form data
@@ -55,7 +54,11 @@ $sql = "INSERT INTO Bookings (username, villa_id, check_in_date, check_out_date,
         VALUES ('$username', '$villa_id', '$check_in_date', '$check_out_date', '$time_in', '$time_out', '$total_amount', '$booking_status')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Booking made successfully";
+    // Get the booking ID of the last inserted record
+    $booking_id = $conn->insert_id;
+    // Redirect to mock payment page with the booking ID as a query parameter
+    header("Location: payment.html?booking_id=$booking_id");
+    exit();
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
