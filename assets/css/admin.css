@@ -13,12 +13,13 @@ body {
 }
 
 a {
-  color: #4154f1;
+  color: #274e13;
   text-decoration: none;
 }
 
 a:hover {
-  color: #717ff5;
+  color: #6aa84f
+;
   text-decoration: none;
 }
 
@@ -65,7 +66,7 @@ h6 {
   position: fixed;
   top: calc(50% - 30px);
   left: calc(50% - 30px);
-  border: 6px solid #2487ce;
+  border: 6px solid #6aa84f;
   border-top-color: #fff;
   border-bottom-color: #fff;
   border-radius: 50%;
@@ -95,7 +96,7 @@ h6 {
   font-size: 24px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #012970;
+  color: #274e13;
 }
 
 /*--------------------------------------------------------------
@@ -108,7 +109,8 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #4154f1;
+  background: #274e13
+;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -122,7 +124,7 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #6776f4;
+  background: #6aa84f;
   color: #fff;
 }
 
@@ -162,7 +164,7 @@ h6 {
 }
 
 .dropdown-menu .dropdown-divider {
-  color: #a5c5fe;
+  color: #d9ead3;
   margin: 0;
 }
 
@@ -267,12 +269,12 @@ h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #012970;
+  color: #274e13;
   font-family: "Poppins", sans-serif;
 }
 
 .card-title span {
-  color: #899bbd;
+  color: #6aa84f;
   font-size: 14px;
   font-weight: 400;
 }
@@ -313,7 +315,7 @@ h6 {
 }
 
 .accordion-button:not(.collapsed) {
-  color: #012970;
+  color: #274e13;
   background-color: #f6f9ff;
 }
 
@@ -325,7 +327,7 @@ h6 {
 
 .accordion-flush .accordion-button:not(.collapsed) {
   box-shadow: none;
-  color: #4154f1;
+  color: #38761d;
 }
 
 .accordion-flush .accordion-body {
@@ -338,12 +340,12 @@ h6 {
 .breadcrumb {
   font-size: 14px;
   font-family: "Nunito", sans-serif;
-  color: #899bbd;
+  color: #6aa84f;
   font-weight: 600;
 }
 
 .breadcrumb a {
-  color: #899bbd;
+  color: #6aa84f;
   transition: 0.3s;
 }
 
@@ -352,7 +354,7 @@ h6 {
 }
 
 .breadcrumb .breadcrumb-item::before {
-  color: #899bbd;
+  color: #6aa84f;
 }
 
 .breadcrumb .active {
@@ -373,13 +375,13 @@ h6 {
 
 .nav-tabs-bordered .nav-link:hover,
 .nav-tabs-bordered .nav-link:focus {
-  color: #4154f1;
+  color: #38761d;
 }
 
 .nav-tabs-bordered .nav-link.active {
   background-color: #fff;
-  color: #4154f1;
-  border-bottom: 2px solid #4154f1;
+  color: #38761d;
+  border-bottom: 2px solid #38761d;
 }
 
 /*--------------------------------------------------------------
@@ -403,7 +405,7 @@ h6 {
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #012970;
+  color: #274e13;
   font-family: "Nunito", sans-serif;
 }
 
@@ -433,13 +435,13 @@ h6 {
 
 .header-nav .nav-icon {
   font-size: 22px;
-  color: #012970;
+  color: #274e13;
   margin-right: 25px;
   position: relative;
 }
 
 .header-nav .nav-profile {
-  color: #012970;
+  color: #274e13;
 }
 
 .header-nav .nav-profile img {
@@ -579,7 +581,7 @@ h6 {
 
 .dashboard .filter .icon:hover,
 .dashboard .filter .icon:focus {
-  color: #4154f1;
+  color: #38761d;
 }
 
 .dashboard .filter .dropdown-header {
@@ -607,7 +609,7 @@ h6 {
 
 .dashboard .info-card h6 {
   font-size: 28px;
-  color: #012970;
+  color: #274e13;
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -623,7 +625,7 @@ h6 {
 }
 
 .dashboard .sales-card .card-icon {
-  color: #4154f1;
+  color: #38761d;
   background: #f6f6fe;
 }
 
@@ -703,12 +705,12 @@ h6 {
 }
 
 .dashboard .news h4 a {
-  color: #012970;
+  color: #274e13;
   transition: 0.3s;
 }
 
 .dashboard .news h4 a:hover {
-  color: #4154f1;
+  color: #38761d;
 }
 
 .dashboard .news p {
@@ -761,60 +763,6 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-# Profie Page
---------------------------------------------------------------*/
-.profile .profile-card img {
-  max-width: 120px;
-}
-
-.profile .profile-card h2 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #2c384e;
-  margin: 10px 0 0 0;
-}
-
-.profile .profile-card h3 {
-  font-size: 18px;
-}
-
-.profile .profile-card .social-links a {
-  font-size: 20px;
-  display: inline-block;
-  color: rgba(1, 41, 112, 0.5);
-  line-height: 0;
-  margin-right: 10px;
-  transition: 0.3s;
-}
-
-.profile .profile-card .social-links a:hover {
-  color: #012970;
-}
-
-.profile .profile-overview .row {
-  margin-bottom: 20px;
-  font-size: 15px;
-}
-
-.profile .profile-overview .card-title {
-  color: #012970;
-}
-
-.profile .profile-overview .label {
-  font-weight: 600;
-  color: rgba(1, 41, 112, 0.6);
-}
-
-.profile .profile-edit label {
-  font-weight: 600;
-  color: rgba(1, 41, 112, 0.6);
-}
-
-.profile .profile-edit img {
-  max-width: 120px;
-}
-
-/*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
 .contact .info-box {
@@ -824,12 +772,12 @@ h6 {
 .contact .info-box i {
   font-size: 38px;
   line-height: 0;
-  color: #4154f1;
+  color: #38761d;
 }
 
 .contact .info-box h3 {
   font-size: 20px;
-  color: #012970;
+  color: #274e13;
   font-weight: 700;
   margin: 20px 0 10px 0;
 }
@@ -891,7 +839,7 @@ h6 {
 
 .contact .php-email-form input:focus,
 .contact .php-email-form textarea:focus {
-  border-color: #4154f1;
+  border-color: #38761d;
 }
 
 .contact .php-email-form input {
@@ -903,16 +851,12 @@ h6 {
 }
 
 .contact .php-email-form button[type=submit] {
-  background: #4154f1;
+  background: #38761d;
   border: 0;
   padding: 10px 30px;
   color: #fff;
   transition: 0.4s;
   border-radius: 4px;
-}
-
-.contact .php-email-form button[type=submit]:hover {
-  background: #5969f3;
 }
 
 @keyframes animate-loading {
@@ -937,12 +881,12 @@ h6 {
 
 .footer .copyright {
   text-align: center;
-  color: #012970;
+  color: #274e13;
 }
 
 .footer .credits {
   padding-top: 5px;
   text-align: center;
   font-size: 13px;
-  color: #012970;
+  color: #274e13;
 }
