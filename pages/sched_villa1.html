@@ -171,11 +171,11 @@
               <div class="guests">
                 <div class="guests-input">
                   <label for="total_amount">Total Amount:</label>
-                  <input type="number" id="total_amount" name="total_amount" min="1" required>
+                  <input type="number" id="total_amount" name="total_amount" min="1" readonly>
                 </div>
               </div>
 
-              <button type="submit">Submit</button>
+              <button type="submit">Book</button>
             </form>
           </div>
         </div>
@@ -207,7 +207,7 @@
                 <input type="time" class="form-control" id="startTime" required>
               </div>
               <div class="form-group">
-                <label for="endTime">End Time:</label>
+                <label for="endTime">End Time:</label>  
                 <input type="time" class="form-control" id="endTime" required>
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
@@ -240,13 +240,52 @@
 
   <script>
     $(document).ready(function() {
+      // Initialize FullCalendar
       var calendar = $('#calendar').fullCalendar({
         defaultView: 'month',
         selectable: true,
         select: function(start, end) {
           $('#reservationStartDate').val(start.format('YYYY-MM-DD'));
           $('#reservationEndDate').val(end.format('YYYY-MM-DD'));
+        },
+        minDate: new Date() // Gray out past dates
+      });
+
+      // Calculate price based on duration
+      function calculatePrice(startTime, endTime) {
+        var duration = moment.duration(moment(endTime, 'HH:mm').diff(moment(startTime, 'HH:mm')));
+        var hours = duration.asHours();
+
+        // Minimum schedule is 5 hours
+        if (hours < 5) {
+          hours = 5;
         }
+
+        // Price is $2500 for 8 hours
+        var pricePerHour = 2500 / 8;
+        var price = pricePerHour * hours;
+        return price.toFixed(2);
+      }
+
+      // Update price when start time or end time changes
+      $('#startTime, #endTime').change(function() {
+        var startTime = $('#startTime').val();
+        var endTime = $('#endTime').val();
+        var price = calculatePrice(startTime, endTime);
+        $('#total_amount').val(price);
+      });
+
+      // Disable past times
+      var now = moment();
+      var disabledTimeRanges = [];
+      if (now.format('YYYY-MM-DD') === $('#reservationStartDate').val()) {
+        disabledTimeRanges.push({
+          start: now.format('HH:mm'),
+          end: '23:59'
+        });
+      }
+      $('#startTime, #endTime').timepicker({
+        'disableTimeRanges': disabledTimeRanges
       });
 
       $('#reservationForm').on('submit', function(event) {
