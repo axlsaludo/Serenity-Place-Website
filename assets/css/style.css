@@ -7,12 +7,12 @@ body {
 }
 
 a {
-  color: #2487ce;
+  color: #93c47d;
   text-decoration: none;
 }
 
 a:hover {
-  color: #469fdf;
+  color: #93c47d;
   text-decoration: none;
 }
 
@@ -35,7 +35,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #2487ce;
+  background: #38761d;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -49,7 +49,7 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #3e9bdd;
+  background: #274e13;
   color: #fff;
 }
 
@@ -132,7 +132,7 @@ h6 {
 }
 
 #header-main .logo a {
-  color: #16507b;
+  color: #274e13;
 }
 
 #header-main .logo img {
@@ -174,7 +174,7 @@ h6 {
   justify-content: space-between;
   padding: 10px 0 10px 30px;
   font-size: 14px;
-  color: #16507b;
+  color: #274e13;
   white-space: nowrap;
   transition: 0.3s;
 }
@@ -190,12 +190,12 @@ h6 {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #2487ce;
+  color: #274e13;
 }
 
 .navbar .getstarted,
 .navbar .getstarted:focus {
-  background: #2487ce;
+  background: #274e13;
   padding: 8px 20px;
   margin-left: 30px;
   border-radius: 4px;
@@ -205,78 +205,14 @@ h6 {
 .navbar .getstarted:hover,
 .navbar .getstarted:focus:hover {
   color: #fff;
-  background: #3194db;
-}
-
-.navbar .dropdown ul {
-  display: block;
-  position: absolute;
-  left: 14px;
-  top: calc(100% + 30px);
-  margin: 0;
-  padding: 10px 0;
-  z-index: 99;
-  opacity: 0;
-  visibility: hidden;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-  transition: 0.3s;
-  border-radius: 4px;
-}
-
-.navbar .dropdown ul li {
-  min-width: 200px;
-}
-
-.navbar .dropdown ul a {
-  padding: 10px 20px;
-  text-transform: none;
-}
-
-.navbar .dropdown ul a i {
-  font-size: 12px;
-}
-
-.navbar .dropdown ul a:hover,
-.navbar .dropdown ul .active:hover,
-.navbar .dropdown ul li:hover>a {
-  color: #2487ce;
-}
-
-.navbar .dropdown:hover>ul {
-  opacity: 1;
-  top: 100%;
-  visibility: visible;
-}
-
-.navbar .dropdown .dropdown ul {
-  top: 0;
-  left: calc(100% - 30px);
-  visibility: hidden;
-}
-
-.navbar .dropdown .dropdown:hover>ul {
-  opacity: 1;
-  top: 0;
-  left: 100%;
-  visibility: visible;
-}
-
-@media (max-width: 1366px) {
-  .navbar .dropdown .dropdown ul {
-    left: -90%;
-  }
-
-  .navbar .dropdown .dropdown:hover>ul {
-    left: -100%;
-  }
+  background: #38761d;
 }
 
 /**
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #124265;
+  color: #274e13;
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -285,10 +221,10 @@ h6 {
 }
 
 .mobile-nav-toggle.bi-x {
-  color: #fff;
+  color: #d9ead3;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 990px) {
   .mobile-nav-toggle {
     display: block;
   }
@@ -333,52 +269,18 @@ h6 {
 .navbar-mobile a:focus {
   padding: 10px 20px;
   font-size: 15px;
-  color: #124265;
+  color: #274e13;
 }
 
 .navbar-mobile a:hover,
 .navbar-mobile .active,
 .navbar-mobile li:hover>a {
-  color: #2487ce;
+  color: #274e13;
 }
 
 .navbar-mobile .getstarted,
 .navbar-mobile .getstarted:focus {
   margin: 15px;
-}
-
-.navbar-mobile .dropdown ul {
-  position: static;
-  display: none;
-  margin: 10px 20px;
-  padding: 10px 0;
-  z-index: 99;
-  opacity: 1;
-  visibility: visible;
-  background: #fff;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-}
-
-.navbar-mobile .dropdown ul li {
-  min-width: 200px;
-}
-
-.navbar-mobile .dropdown ul a {
-  padding: 10px 20px;
-}
-
-.navbar-mobile .dropdown ul a i {
-  font-size: 12px;
-}
-
-.navbar-mobile .dropdown ul a:hover,
-.navbar-mobile .dropdown ul .active:hover,
-.navbar-mobile .dropdown ul li:hover>a {
-  color: #2487ce;
-}
-
-.navbar-mobile .dropdown>.dropdown-active {
-  display: block;
 }
 
 /*--------------------------------------------------------------
@@ -412,7 +314,7 @@ h6 {
   font-size: 56px;
   font-weight: 700;
   line-height: 72px;
-  color: #124265;
+  color: #274e13;
   font-family: "Poppins", sans-serif;
 }
 
@@ -433,89 +335,11 @@ h6 {
   transition: 0.5s;
   margin-top: 30px;
   color: #fff;
-  background: #2487ce;
+  background: #274e13;
 }
 
 #hero .btn-get-started:hover {
-  background: #3194db;
-}
-
-#hero .icon-boxes {
-  margin-top: 100px;
-}
-
-#hero .icon-box {
-  padding: 50px 30px;
-  position: relative;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 0 29px 0 rgba(18, 66, 101, 0.08);
-  transition: all 0.3s ease-in-out;
-  border-radius: 8px;
-  z-index: 1;
-}
-
-#hero .icon-box .title {
-  font-weight: 700;
-  margin-bottom: 15px;
-  font-size: 18px;
-}
-
-#hero .icon-box .title a {
-  color: #124265;
-  transition: 0.3s;
-}
-
-#hero .icon-box .description {
-  font-size: 15px;
-  line-height: 28px;
-  margin-bottom: 0;
-}
-
-#hero .icon-box .icon {
-  margin-bottom: 20px;
-  padding-top: 10px;
-  display: inline-block;
-  transition: all 0.3s ease-in-out;
-  font-size: 36px;
-  line-height: 1;
-  color: #2487ce;
-}
-
-#hero .icon-box:hover {
-  transform: scale(1.08);
-}
-
-#hero .icon-box:hover .title a {
-  color: #2487ce;
-}
-
-@media (min-width: 1024px) {
-  #hero {
-    background-attachment: fixed;
-  }
-}
-
-@media (max-height: 800px) {
-  #hero {
-    height: auto;
-  }
-}
-
-@media (max-width: 992px) {
-  #hero {
-    height: auto;
-  }
-
-  #hero h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-
-  #hero h2 {
-    font-size: 18px;
-    line-height: 24px;
-  }
+  background: #6aa84f;
 }
 
 /*--------------------------------------------------------------
@@ -1057,149 +881,6 @@ section {
 @media (max-width: 1200px) {
   .faq .faq-list {
     padding: 0;
-  }
-}
-
-/*--------------------------------------------------------------
-# Contact
---------------------------------------------------------------*/
-.contact .info {
-  width: 100%;
-  background: #fff;
-}
-
-.contact .info i {
-  font-size: 20px;
-  color: #2487ce;
-  float: left;
-  width: 44px;
-  height: 44px;
-  background: #e3f0fa;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  transition: all 0.3s ease-in-out;
-}
-
-.contact .info h4 {
-  padding: 0 0 0 60px;
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 5px;
-  color: #124265;
-}
-
-.contact .info p {
-  padding: 0 0 0 60px;
-  margin-bottom: 0;
-  font-size: 14px;
-  color: #217bbc;
-}
-
-.contact .info .email,
-.contact .info .phone {
-  margin-top: 40px;
-}
-
-.contact .info .email:hover i,
-.contact .info .address:hover i,
-.contact .info .phone:hover i {
-  background: #2487ce;
-  color: #fff;
-}
-
-.contact .php-email-form {
-  width: 100%;
-  background: #fff;
-}
-
-.contact .php-email-form .form-group {
-  padding-bottom: 8px;
-}
-
-.contact .php-email-form .error-message {
-  display: none;
-  color: #fff;
-  background: #ed3c0d;
-  text-align: left;
-  padding: 15px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .error-message br+br {
-  margin-top: 25px;
-}
-
-.contact .php-email-form .sent-message {
-  display: none;
-  color: #fff;
-  background: #18d26e;
-  text-align: center;
-  padding: 15px;
-  font-weight: 600;
-}
-
-.contact .php-email-form .loading {
-  display: none;
-  background: #fff;
-  text-align: center;
-  padding: 15px;
-}
-
-.contact .php-email-form .loading:before {
-  content: "";
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid #18d26e;
-  border-top-color: #eee;
-  animation: animate-loading 1s linear infinite;
-}
-
-.contact .php-email-form input,
-.contact .php-email-form textarea {
-  border-radius: 0;
-  box-shadow: none;
-  font-size: 14px;
-  border-radius: 4px;
-}
-
-.contact .php-email-form input:focus,
-.contact .php-email-form textarea:focus {
-  border-color: #2487ce;
-}
-
-.contact .php-email-form input {
-  height: 44px;
-}
-
-.contact .php-email-form textarea {
-  padding: 10px 12px;
-}
-
-.contact .php-email-form button[type=submit] {
-  background: #2487ce;
-  border: 0;
-  padding: 10px 30px;
-  color: #fff;
-  transition: 0.4s;
-  border-radius: 4px;
-}
-
-.contact .php-email-form button[type=submit]:hover {
-  background: #3194db;
-}
-
-@keyframes animate-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
   }
 }
 
