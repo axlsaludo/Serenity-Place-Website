@@ -5,21 +5,18 @@
 :root {
   scroll-behavior: smooth;
 }
-
 body {
   font-family: "Open Sans", sans-serif;
-  background: #f6f9ff;
   color: #444444;
 }
 
 a {
-  color: #274e13;
+  color: #93c47d;
   text-decoration: none;
 }
 
 a:hover {
-  color: #6aa84f
-;
+  color: #93c47d;
   text-decoration: none;
 }
 
@@ -29,7 +26,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Nunito", sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -109,8 +106,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #274e13
-;
+  background: #274e13;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -387,8 +383,15 @@ h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+
 .logo {
+  font-size: 28px;
+  margin: 0;
+  padding: 0;
   line-height: 1;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  font-family: "Poppins", sans-serif;
 }
 
 @media (min-width: 1200px) {
@@ -406,7 +409,7 @@ h6 {
   font-size: 26px;
   font-weight: 700;
   color: #274e13;
-  font-family: "Nunito", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .header {
