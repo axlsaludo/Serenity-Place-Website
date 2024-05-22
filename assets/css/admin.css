@@ -890,3 +890,17 @@ h6 {
   font-size: 13px;
   color: #274e13;
 }
+
+#hero .btn-primary-login {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  padding: 14px 50px;
+  border-radius: 5px;
+  transition: 0.5s;
+  margin-top: 30px;
+  color: #fff;
+  background: #274e13;
+}
