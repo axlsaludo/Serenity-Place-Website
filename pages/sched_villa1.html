@@ -71,6 +71,26 @@
     .guests-input {
       width: 48%;
     }
+
+    .note {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      font-size: small;
+    }
+
+    .note h6 {
+      color: #333;
+    }
+
+    .note p {
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 
@@ -143,40 +163,68 @@
         <div id="reservation-container">
           <div class="reservation-form">
             <h2>Make a Reservation</h2>
-            <form id="reservationForm" action="../forms/schedule.php" method="POST">
-              <input type="hidden" id="villa_id" name="villa_id" value="1"> <!-- Static Villa ID -->
+            <fo<!-- Reservation Form -->
+              <form id="reservationForm" action="../forms/schedule.php" method="POST">
+                  <!-- Static Villa ID -->
+                  <input type="hidden" id="villa_id" name="villa_id" value="1"> 
               
-              <label for="reservationStartDate">Arrival Date:</label>
-              <input type="text" id="reservationStartDate" name="check_in_date" readonly>
-
-              <label for="reservationEndDate">Departure Date:</label>
-              <input type="text" id="reservationEndDate" name="check_out_date" readonly>
-
-              <hr>
-
-              <div class="time-container">
-                <div class="time-input">
-                  <label for="startTime">Start Time:</label>
-                  <input type="time" id="startTime" name="time_in">
-                </div>
-
-                <div class="time-input">
-                  <label for="endTime">End Time:</label>
-                  <input type="time" id="endTime" name="time_out">
-                </div>
-              </div>
-
-              <hr>
-
-              <div class="guests">
-                <div class="guests-input">
-                  <label for="total_amount">Total Amount:</label>
-                  <input type="number" id="total_amount" name="total_amount" min="1" readonly>
-                </div>
-              </div>
-
-              <button type="submit">Book</button>
-            </form>
+                  <!-- Important Note -->
+                  <div class="note">
+                    <h6>Important Note for Villa Guests</h6>
+                    <p>Please be advised that there is a minimum payment requirement for this villa. Additionally, the minimum duration of stay is 5 hours.</p>
+                    <p>The computed rate for a 5-hour stay is [insert computed value here].</p>
+                    <p>We kindly remind you to be responsible for your pets during your stay. Please ensure to clean up after your pets, including their waste.</p>
+                    <p>For any additional inquiries or concerns, such as accommodating extra guests, please feel free to contact us at the number provided in the Bottom of the Pages.</p>
+                    <p>Thank you for choosing our villa. We hope you have a pleasant and enjoyable stay!</p>
+                  </div>
+    
+              
+                  <!-- Date Selection -->
+                  <label for="reservationStartDate">Arrival Date:</label>
+                  <input type="text" id="reservationStartDate" name="check_in_date" readonly>
+              
+                  <label for="reservationEndDate">Departure Date:</label>
+                  <input type="text" id="reservationEndDate" name="check_out_date" readonly>
+              
+                  <hr>
+              
+                  <!-- Time Selection -->
+                  <div class="time-container">
+                      <div class="time-input">
+                          <label for="startTime">Start Time:</label>
+                          <input type="time" id="startTime" name="time_in">
+                      </div>
+                      <div class="time-input">
+                          <label for="endTime">End Time:</label>
+                          <input type="time" id="endTime" name="time_out">
+                      </div>
+                  </div>
+              
+                  <hr>
+              
+                  <!-- Guest Information -->
+                  <div class="guests">
+                    <!-- Adults Counter -->
+                    <div class="guests-input">
+                        <label for="adults">Adults:</label>
+                        <input type="number" id="adults" name="adults" min="0" max="4" value="0">
+                    </div>
+                    <!-- Children Counter -->
+                    <div class="guests-input">
+                        <label for="children">Children:</label>
+                        <input type="number" id="children" name="children" min="0" value="0">
+                    </div>
+                  </div>
+              
+                  <!-- Total Amount -->
+                  <div class="total-amount">
+                      <label for="total_amount">Total Amount:</label>
+                      <input type="number" id="total_amount" name="total_amount" min="1" readonly>
+                  </div>
+              
+                  <button type="submit">Book</button>
+              </form>
+              
           </div>
         </div>
       </div>
@@ -267,44 +315,26 @@
         return price.toFixed(2);
       }
 
-      // Update price when start time or end time changes
-      $('#startTime, #endTime').change(function() {
+      // Update price when start time, end time, adults, or children change
+      $('#startTime, #endTime, #adults, #children').change(function() {
+        var adults = parseInt($('#adults').val());
+        var children = parseInt($('#children').val());
+
+        // Limit number of children based on number of adults
+        var maxChildren = 4 - adults;
+        if (children > maxChildren) {
+            children = maxChildren;
+            $('#children').val(maxChildren);
+        }
+
+        // Calculate total guests (including adults and children)
+        var totalGuests = adults + children;
+
+        // Calculate price based on duration and total guests
         var startTime = $('#startTime').val();
         var endTime = $('#endTime').val();
         var price = calculatePrice(startTime, endTime);
         $('#total_amount').val(price);
-      });
-
-      // Disable past times
-      var now = moment();
-      var disabledTimeRanges = [];
-      if (now.format('YYYY-MM-DD') === $('#reservationStartDate').val()) {
-        disabledTimeRanges.push({
-          start: now.format('HH:mm'),
-          end: '23:59'
-        });
-      }
-      $('#startTime, #endTime').timepicker({
-        'disableTimeRanges': disabledTimeRanges
-      });
-
-      $('#reservationForm').on('submit', function(event) {
-        event.preventDefault();
-        var formData = $(this).serialize();
-
-        $.ajax({
-          url: 'submit_reservation.php',
-          type: 'POST',
-          data: formData,
-          success: function(response) {
-            alert(response);
-            // Optionally, you can refresh the calendar to show the new booking
-            calendar.fullCalendar('refetchEvents');
-          },
-          error: function(xhr, status, error) {
-            alert('An error occurred: ' + error);
-          }
-        });
       });
     });
   </script>
