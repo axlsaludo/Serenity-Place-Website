@@ -42,15 +42,22 @@
   </style>
 </head>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create an Account</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
 <body>
-
   <main>
     <div class="container">
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-
               <div class="d-flex justify-content-center py-4">
                 <a href="../index.html" class="logo d-flex align-items-center w-auto">
                   <span class="d-none d-lg-block">Serenity Place Lipa</span>
@@ -95,7 +102,7 @@
                     <div class="col-12">
                       <div class="form-check">
                         <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                        <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
+                        <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#" id="termsLink">terms and conditions</a></label>
                         <div class="invalid-feedback">You must agree before submitting.</div>
                       </div>
                     </div>
@@ -112,11 +119,50 @@
             </div>
           </div>
         </div>
-
       </section>
+    </div>
 
+    <!-- Terms and Conditions Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>As a condition of use, you promise not to use the Services for any purpose that is unlawful or prohibited by these Terms, or any other purpose not reasonably intended. By way of example, and not as a limitation, you agree not to use the Services:</p>
+            <ol>
+              <li>To abuse, harass, threaten, impersonate or intimidate any person;</li>
+              <li>To post or transmit, or cause to be posted or transmitted, any Content that is libelous, defamatory, obscene, pornographic, abusive, offensive, profane, or that infringes any copyright or other right of any person;</li>
+              <li>To communicate with 500px representatives or other users in an abusive or offensive manner;</li>
+              <li>For any purpose (including posting or viewing Content) that is not permitted under the laws of the jurisdiction where you use the Services;</li>
+              <li>To post or transmit, or cause to be posted or transmitted, any Communication designed or intended to obtain password, account, or private information from any 500px user;</li>
+              <li>To create or transmit unwanted ‘spam’ to any person or any URL;</li>
+              <li>To create multiple accounts for the purpose of voting for or against users’ Visual Content;</li>
+              <li>To post copyrighted Content that does not belong to you, unless you are commenting on Visual Content in Blogs, where you may post such Content subject to providing appropriate attribution to the copyright owner and a link to the source of the Content;</li>
+            </ol>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
   </main><!-- End #main -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('termsLink').addEventListener('click', function(event) {
+      event.preventDefault();
+      var termsModal = new bootstrap.Modal(document.getElementById('termsModal'));
+      termsModal.show();
+    });
+  </script>
+</body>
+</html>
+
+
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
