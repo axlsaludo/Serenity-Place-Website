@@ -283,6 +283,21 @@ h6 {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+/* Adjusting input group */
+.input-group-text {
+  width: 50px; /* Ensure this matches the height of input fields */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-group .form-control {
+  flex: 1 1 auto;
+  width: 1%;
+  margin-bottom: 0;
+}
+
+
 /* Alerts */
 .alert-heading {
   font-weight: 500;
