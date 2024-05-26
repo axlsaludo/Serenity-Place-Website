@@ -75,7 +75,7 @@ if ($stmt->execute()) {
     // Get the booking ID of the last inserted record
     $booking_id = $stmt->insert_id;
     // Redirect to schedule page with the booking ID as a query parameter
-    header("Location: schedule_page.php?booking_id=$booking_id");
+    header("Location: /Serenity-Place-Website/pages/payment.html?booking_id=$booking_id");
     exit();
 } else {
     echo "Error: " . $stmt->error;
