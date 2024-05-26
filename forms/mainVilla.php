@@ -139,6 +139,7 @@
       children INT NOT NULL,
       total_amount DECIMAL(10, 2) NOT NULL,
       booking_status ENUM('confirmed', 'cancelled', 'pending') DEFAULT 'pending',
+      payment_status ENUM('paid', 'not_paid') DEFAULT 'not_paid',
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )";
   if ($conn->query($sql) !== TRUE) {
@@ -171,7 +172,7 @@
     }
 
     // Insert booking into database
-    $stmt = $conn->prepare("INSERT INTO Bookings (username, villa_id, check_in_date, check_out_date, time_in, time_out, adults, children, total_amount, booking_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO Bookings (username, villa_id, check_in_date, check_out_date, time_in, time_out, adults, children, total_amount, booking_status, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'not_paid')");
     $stmt->bind_param("sissssddds", $username, $villa_id, $check_in_date, $check_out_date, $time_in, $time_out, $adults, $children, $total_amount, $booking_status);
 
     if ($stmt->execute()) {
