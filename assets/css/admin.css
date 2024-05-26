@@ -922,3 +922,10 @@ h6 {
   color: #fff;
   background: #274e13;
 }
+
+/* for pop up mess 
+
+/* styles.css */
+.modal-content {
+  text-align: center;
+}

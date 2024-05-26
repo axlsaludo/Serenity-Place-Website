@@ -48,7 +48,7 @@ if ($result->num_rows > 0) {
 } else {
     // Invalid credentials, redirect back to login page with an error message
     $_SESSION['error'] = "Wrong username or password";
-    header("Location: ../pages/login.html");
+    header("Location: ../pages/login.html?error=1");
 }
 
 $conn->close();
