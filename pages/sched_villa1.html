@@ -154,190 +154,221 @@
       </div>
     </div>
 
-    <!-- Calendar View -->
-    <div class="container mt-5">
-      <div id="calendar-reservation-container">
-        <div id="calendar-container">
-          <div id="calendar"></div>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reservation Calendar</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <link href='https://fullcalendar.io/releases/core/4.0.2/main.min.css' rel='stylesheet' />
+        <link href='https://fullcalendar.io/releases/daygrid/4.0.1/main.min.css' rel='stylesheet' />
+        <link href="styles.css" rel="stylesheet"> <!-- Link to the external CSS file -->
+    </head>
+    <body>
+        <!-- Calendar View -->
+        <div class="container mt-5">
+            <div id="calendar-reservation-container">
+                <div id="calendar-container">
+                    <div id="calendar"></div>
+                </div>
+                <div id="reservation-container">
+                    <div class="reservation-form">
+                        <h2>Make a Reservation</h2>
+                        <!-- Reservation Form -->
+                        <form id="reservationForm" action="../forms/schedule.php" method="POST">
+                            <!-- Static Villa ID -->
+                            <input type="hidden" id="villa_id" name="villa_id" value="1"> 
+                        
+                            <!-- Important Note -->
+                            <div class="note">
+                                <h6>Important Note for Villa Guests</h6>
+                                <p>Please be advised that there is a minimum payment requirement for this villa. Additionally, the minimum duration of stay is 5 hours.</p>
+                                <p>The computed rate for a 5-hour stay is [insert computed value here].</p>
+                                <p>We kindly remind you to be responsible for your pets during your stay. Please ensure to clean up after your pets, including their waste.</p>
+                                <p>For any additional inquiries or concerns, such as accommodating extra guests, please feel free to contact us at the number provided in the Bottom of the Pages.</p>
+                                <p>Thank you for choosing our villa. We hope you have a pleasant and enjoyable stay!</p>
+                            </div>
+                        
+                            <!-- Date Selection -->
+                            <div class="date-input-container">
+                                <label for="reservationStartDate">Arrival Date:</label>
+                                <input type="text" id="reservationStartDate" name="check_in_date" readonly>
+                                <span class="clear-date" onclick="clearDate('reservationStartDate')">&times;</span>
+                            </div>
+                        
+                            <div class="date-input-container">
+                                <label for="reservationEndDate">Departure Date:</label>
+                                <input type="text" id="reservationEndDate" name="check_out_date" readonly>
+                                <span class="clear-date" onclick="clearDate('reservationEndDate')">&times;</span>
+                            </div>
+                        
+                            <hr>
+                        
+                            <!-- Time Selection -->
+                            <div class="time-container">
+                                <div class="time-input">
+                                    <label for="startTime">Start Time:</label>
+                                    <input type="time" id="startTime" name="time_in">
+                                </div>
+                                <div class="time-input">
+                                    <label for="endTime">End Time:</label>
+                                    <input type="time" id="endTime" name="time_out">
+                                </div>
+                            </div>
+                        
+                            <hr>
+                        
+                            <!-- Guest Information -->
+                            <div class="guests">
+                                <!-- Adults Counter -->
+                                <div class="guests-input">
+                                    <label for="adults">Adults:</label>
+                                    <input type="number" id="adults" name="adults" min="0" max="4" value="0">
+                                </div>
+                                <!-- Children Counter -->
+                                <div class="guests-input">
+                                    <label for="children">Children:</label>
+                                    <input type="number" id="children" name="children" min="0" value="0">
+                                </div>
+                            </div>
+                        
+                            <!-- Total Amount -->
+                            <div class="total-amount">
+                                <label for="total_amount">Total Amount:</label>
+                                <input type="number" id="total_amount" name="total_amount" min="1" readonly>
+                            </div>
+                        
+                            <button type="submit">Book</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="reservation-container">
-          <div class="reservation-form">
-            <h2>Make a Reservation</h2>
-            <fo<!-- Reservation Form -->
-              <form id="reservationForm" action="../forms/schedule.php" method="POST">
-                  <!-- Static Villa ID -->
-                  <input type="hidden" id="villa_id" name="villa_id" value="1"> 
-              
-                  <!-- Important Note -->
-                  <div class="note">
-                    <h6>Important Note for Villa Guests</h6>
-                    <p>Please be advised that there is a minimum payment requirement for this villa. Additionally, the minimum duration of stay is 5 hours.</p>
-                    <p>The computed rate for a 5-hour stay is [insert computed value here].</p>
-                    <p>We kindly remind you to be responsible for your pets during your stay. Please ensure to clean up after your pets, including their waste.</p>
-                    <p>For any additional inquiries or concerns, such as accommodating extra guests, please feel free to contact us at the number provided in the Bottom of the Pages.</p>
-                    <p>Thank you for choosing our villa. We hope you have a pleasant and enjoyable stay!</p>
-                  </div>
     
-              
-                  <!-- Date Selection -->
-                  <label for="reservationStartDate">Arrival Date:</label>
-                  <input type="text" id="reservationStartDate" name="check_in_date" readonly>
-              
-                  <label for="reservationEndDate">Departure Date:</label>
-                  <input type="text" id="reservationEndDate" name="check_out_date" readonly>
-              
-                  <hr>
-              
-                  <!-- Time Selection -->
-                  <div class="time-container">
-                      <div class="time-input">
-                          <label for="startTime">Start Time:</label>
-                          <input type="time" id="startTime" name="time_in">
-                      </div>
-                      <div class="time-input">
-                          <label for="endTime">End Time:</label>
-                          <input type="time" id="endTime" name="time_out">
-                      </div>
-                  </div>
-              
-                  <hr>
-              
-                  <!-- Guest Information -->
-                  <div class="guests">
-                    <!-- Adults Counter -->
-                    <div class="guests-input">
-                        <label for="adults">Adults:</label>
-                        <input type="number" id="adults" name="adults" min="0" max="4" value="0">
+        <!-- Reservation Modal -->
+        <div id="reservationModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Make a Reservation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <!-- Children Counter -->
-                    <div class="guests-input">
-                        <label for="children">Children:</label>
-                        <input type="number" id="children" name="children" min="0" value="0">
+                    <div class="modal-body">
+                        <form id="reservationFormModal">
+                            <div class="form-group">
+                                <label for="villaOption">Villa:</label>
+                                <input type="text" class="form-control" id="villaOption" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reservationDate">Date:</label>
+                                <input type="text" class="form-control" id="reservationDate" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="startTime">Start Time:</label>
+                                <input type="time" class="form-control" id="startTime" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="endTime">End Time:</label>  
+                                <input type="time" class="form-control" id="endTime" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
                     </div>
-                  </div>
-              
-                  <!-- Total Amount -->
-                  <div class="total-amount">
-                      <label for="total_amount">Total Amount:</label>
-                      <input type="number" id="total_amount" name="total_amount" min="1" readonly>
-                  </div>
-              
-                  <button type="submit">Book</button>
-              </form>
-              
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Reservation Modal -->
-    <div id="reservationModal" class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Make a Reservation</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form id="reservationFormModal">
-              <div class="form-group">
-                <label for="villaOption">Villa:</label>
-                <input type="text" class="form-control" id="villaOption" required>
-              </div>
-              <div class="form-group">
-                <label for="reservationDate">Date:</label>
-                <input type="text" class="form-control" id="reservationDate" readonly>
-              </div>
-              <div class="form-group">
-                <label for="startTime">Start Time:</label>
-                <input type="time" class="form-control" id="startTime" required>
-              </div>
-              <div class="form-group">
-                <label for="endTime">End Time:</label>  
-                <input type="time" class="form-control" id="endTime" required>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong><span>The Serenity Place</span></strong>. All Rights Reserved
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <!-- Vendor JS Files -->
-  <script src="../assets/vendor/aos/aos.js"></script>
-  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="../assets/js/main.js"></script>
-
-  <script>
-    $(document).ready(function() {
-      // Initialize FullCalendar
-      var calendar = $('#calendar').fullCalendar({
-        defaultView: 'month',
-        selectable: true,
-        select: function(start, end) {
-          $('#reservationStartDate').val(start.format('YYYY-MM-DD'));
-          $('#reservationEndDate').val(end.format('YYYY-MM-DD'));
-        },
-        minDate: new Date() // Gray out past dates
-      });
-
-      // Calculate price based on duration
-      function calculatePrice(startTime, endTime) {
-        var duration = moment.duration(moment(endTime, 'HH:mm').diff(moment(startTime, 'HH:mm')));
-        var hours = duration.asHours();
-
-        // Minimum schedule is 5 hours
-        if (hours < 5) {
-          hours = 5;
-        }
-
-        // Price is $2500 for 8 hours
-        var pricePerHour = 2500 / 8;
-        var price = pricePerHour * hours;
-        return price.toFixed(2);
-      }
-
-      // Update price when start time, end time, adults, or children change
-      $('#startTime, #endTime, #adults, #children').change(function() {
-        var adults = parseInt($('#adults').val());
-        var children = parseInt($('#children').val());
-
-        // Limit number of children based on number of adults
-        var maxChildren = 4 - adults;
-        if (children > maxChildren) {
-            children = maxChildren;
-            $('#children').val(maxChildren);
-        }
-
-        // Calculate total guests (including adults and children)
-        var totalGuests = adults + children;
-
-        // Calculate price based on duration and total guests
-        var startTime = $('#startTime').val();
-        var endTime = $('#endTime').val();
-        var price = calculatePrice(startTime, endTime);
-        $('#total_amount').val(price);
-      });
-    });
-  </script>
-</body>
-
-</html>
+    
+        <!-- Vendor JS Files -->
+        <script src="../assets/vendor/aos/aos.js"></script>
+        <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="assets/vendor/php-email-form/validate.js"></script>
+    
+        <!-- Template Main JS File -->
+        <script src="../assets/js/main.js"></script>
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src='https://fullcalendar.io/releases/core/4.0.2/main.min.js'></script>
+        <script src='https://fullcalendar.io/releases/daygrid/4.0.1/main.min.js'></script>
+        <script>
+            $(document).ready(function() {
+                var isStartSelected = false;
+                var startDate, endDate;
+    
+                $('#calendar').fullCalendar({
+                    defaultView: 'month',
+                    selectable: true,
+                    select: function(start, end) {
+                        if (!isStartSelected) {
+                            startDate = start;
+                            $('#reservationStartDate').val(start.format('YYYY-MM-DD'));
+                            isStartSelected = true;
+                        } else {
+                            endDate = end;
+                            if (end.isAfter(startDate)) {
+                                $('#reservationEndDate').val(end.subtract(1, 'days').format('YYYY-MM-DD'));
+                                isStartSelected = false;
+                            } else {
+                                alert("Departure date must be after the arrival date.");
+                            }
+                        }
+                    },
+                    minDate: new Date() // Gray out past dates
+                });
+    
+                // Clear date function
+                window.clearDate = function(inputId) {
+                    $('#' + inputId).val('');
+                    isStartSelected = false;
+                    if (inputId === 'reservationStartDate') {
+                        $('#reservationEndDate').val('');
+                    }
+                };
+    
+                // Calculate price based on duration
+                function calculatePrice(startTime, endTime) {
+                    var duration = moment.duration(moment(endTime, 'HH:mm').diff(moment(startTime, 'HH:mm')));
+                    var hours = duration.asHours();
+    
+                    // Minimum schedule is 5 hours
+                    if (hours < 5) {
+                        hours = 5;
+                    }
+    
+                    // Price is $2500 for 8 hours
+                    var pricePerHour = 2500 / 8;
+                    var price = pricePerHour * hours;
+                    return price.toFixed(2);
+                }
+    
+                // Update price when start time, end time, adults, or children change
+                $('#startTime, #endTime, #adults, #children').change(function() {
+                    var adults = parseInt($('#adults').val());
+                    var children = parseInt($('#children').val());
+    
+                    // Limit number of children based on number of adults
+                    var maxChildren = 4 - adults;
+                    if (children > maxChildren) {
+                        children = maxChildren;
+                        $('#children').val(maxChildren);
+                    }
+    
+                    // Calculate total guests (including adults and children)
+                    var totalGuests = adults + children;
+    
+                    // Calculate price based on duration and total guests
+                    var startTime = $('#startTime').val();
+                    var endTime = $('#endTime').val();
+                    var price = calculatePrice(startTime, endTime);
+                    $('#total_amount').val(price);
+                });
+            });
+        </script>
+    </body>
+    </html>
+    
