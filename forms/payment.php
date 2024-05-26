@@ -35,11 +35,11 @@ $payment_successful = $cc_name && $cc_number && $cc_expiration && $cc_cvv;
 
 // Update booking status to 'confirmed' and payment status to 'paid'
 if ($payment_successful) {
-    $sql = "UPDATE Bookings SET booking_status = 'confirmed', payment_status = 'paid' WHERE booking_id = ?";
+    $sql = "UPDATE Bookings SET payment_status = 'paid' WHERE booking_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $booking_id);
 } else {
-    $sql = "UPDATE Bookings SET booking_status = 'pending', payment_status = 'not_paid' WHERE booking_id = ?";
+    $sql = "UPDATE Bookings SET payment_status = 'not_paid' WHERE booking_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $booking_id);
 }
