@@ -35,15 +35,20 @@
 </head>
 
 <body>
-  <!-- ======= Header ======= -->
+  <!-- Start Header -->
   <header id="header-main" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
       <h1 class="logo"><a href="../index.html">The Serenity Place</a></h1>
       <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="../villas.html">Villas</a></li>
+          <li><a class="nav-link scrollto" href="../logout.php">Logout</a></li>
+        </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
+      </nav><!-- .navbar -->
     </div>
-  </header><!-- End Header -->
+  </header>
+  <!-- End Header -->
 
   <main id="main" class="main">
     <section class="section dashboard">
