@@ -1,4 +1,5 @@
 <?php
+
 // Start session
 session_start();
 
@@ -16,11 +17,12 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Create users table if it doesn't exist
+// Create users table if it doesn't exist and add status column if it doesn't exist
 $tableCheckQuery = "CREATE TABLE IF NOT EXISTS users (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30) NOT NULL,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    status ENUM('online', 'offline') DEFAULT 'offline'
 )";
 if ($conn->query($tableCheckQuery) === FALSE) {
     die("Error creating table: " . $conn->error);
@@ -39,6 +41,10 @@ if ($result->num_rows > 0) {
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $username;
 
+    // Update user status to 'online'
+    $updateStatusQuery = "UPDATE users SET status='online' WHERE username='$username'";
+    $conn->query($updateStatusQuery);
+
     // Redirect based on username and password
     if ($username == 'admin' && $password == 'admin') {
         header("Location: ../forms/admin.php");
@@ -52,4 +58,5 @@ if ($result->num_rows > 0) {
 }
 
 $conn->close();
+
 ?>

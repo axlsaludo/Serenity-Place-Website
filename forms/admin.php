@@ -56,11 +56,11 @@
         <!-- Left side columns -->
         <div class="col-lg-8">
           <div class="row">
-            <!-- Sales Card -->
+            <!-- Books Card -->
             <div class="col-xxl-4 col-md-6">
               <div class="card-admin info-card sales-card">
                 <div class="card-body">
-                  <h5 class="card-title">Sales <span>| Today</span></h5>
+                  <h5 class="card-title">Books <span>| Today</span></h5>
                   <div class="d-flex align-items-center">
                     <div class="ps-3">
                       <h6>145</h6>
@@ -69,7 +69,7 @@
                   </div>
                 </div>
               </div>
-            </div><!-- End Sales Card -->
+            </div><!-- End Books Card -->
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
               <div class="card-admin info-card revenue-card">

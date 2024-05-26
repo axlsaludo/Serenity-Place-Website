@@ -38,7 +38,7 @@
       <h1 class="logo"><a href="../index.html">The Serenity Place</a></h1>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="..forms/admin.php">Admin Home</a></li>
+          <li><a class="nav-link scrollto" href="admin.php">Admin Home</a></li>
           <li><a class="nav-link scrollto" href="../logout.php">Logout</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
