@@ -9,11 +9,36 @@ $password = ""; // default password for XAMPP
 $dbname = "accounts"; // replace with your database name
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password);
 
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
+}
+
+// Create database if it doesn't exist
+$createDbQuery = "CREATE DATABASE IF NOT EXISTS $dbname";
+if ($conn->query($createDbQuery) === TRUE) {
+    // Select the created database
+    $conn->select_db($dbname);
+} else {
+    die("Error creating database: " . $conn->error);
+}
+
+// Check if the 'users' table exists, if not, create it
+$checkTableQuery = "SHOW TABLES LIKE 'users'";
+$tableExists = $conn->query($checkTableQuery)->num_rows > 0;
+if (!$tableExists) {
+    $createTableQuery = "CREATE TABLE users (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(50) NOT NULL,
+        email VARCHAR(100) NOT NULL,
+        username VARCHAR(30) NOT NULL,
+        password VARCHAR(255) NOT NULL
+    )";
+    if (!$conn->query($createTableQuery)) {
+        die("Error creating table: " . $conn->error);
+    }
 }
 
 // Process form submission
