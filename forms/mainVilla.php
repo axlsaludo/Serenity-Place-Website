@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
   <title>Villa 1 - Serenity Place</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
@@ -93,6 +95,101 @@
 </head>
 
 <body>
+  <?php
+  // Start session
+  session_start();
+
+  // Enable error reporting
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+
+  // Database connection details
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "accounts";
+
+  // Create connection
+  $conn = new mysqli($servername, $username, $password);
+
+  // Check connection
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
+  // Create database if it doesn't exist
+  $sql = "CREATE DATABASE IF NOT EXISTS $dbname";
+  if ($conn->query($sql) !== TRUE) {
+      die("Error creating database: " . $conn->error);
+  }
+
+  // Select the database
+  $conn->select_db($dbname);
+
+  // Create Bookings table if it doesn't exist
+  $sql = "CREATE TABLE IF NOT EXISTS Bookings (
+      booking_id INT PRIMARY KEY AUTO_INCREMENT,
+      username VARCHAR(50) NOT NULL,
+      villa_id INT NOT NULL,
+      check_in_date DATE NOT NULL,
+      check_out_date DATE NOT NULL,
+      time_in TIME NOT NULL,
+      time_out TIME NOT NULL,
+      adults INT NOT NULL,
+      children INT NOT NULL,
+      total_amount DECIMAL(10, 2) NOT NULL,
+      booking_status ENUM('confirmed', 'cancelled', 'pending') DEFAULT 'pending',
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )";
+  if ($conn->query($sql) !== TRUE) {
+      die("Error creating Bookings table: " . $conn->error);
+  }
+
+  // Check if user is logged in
+  if (!isset($_SESSION['loggedin'])) {
+      header("Location: ../pages/login.html");
+      exit(); 
+  }
+
+  // Process form submission
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get form data
+    $villa_id = $_POST['villa_id'] ?? null;
+    $check_in_date = $_POST['check_in_date'] ?? null;
+    $check_out_date = $_POST['check_out_date'] ?? null;
+    $time_in = $_POST['time_in'] ?? null;
+    $time_out = $_POST['time_out'] ?? null;
+    $adults = $_POST['adults'] ?? 0;
+    $children = $_POST['children'] ?? 0;
+    $total_amount = $_POST['total_amount'] ?? null;
+    $booking_status = 'pending'; // Default status
+    $username = $_SESSION['username'] ?? null;
+
+    // Validate form data
+    if (!$villa_id || !$check_in_date || !$check_out_date || !$time_in || !$time_out || !$total_amount || !$username) {
+        die("Missing form data.");
+    }
+
+    // Insert booking into database
+    $stmt = $conn->prepare("INSERT INTO Bookings (username, villa_id, check_in_date, check_out_date, time_in, time_out, adults, children, total_amount, booking_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sissssddds", $username, $villa_id, $check_in_date, $check_out_date, $time_in, $time_out, $adults, $children, $total_amount, $booking_status);
+
+    if ($stmt->execute()) {
+        // Get the booking ID of the last inserted record
+        $booking_id = $stmt->insert_id;
+        // Redirect to payment page with the booking ID as a query parameter
+        header("Location: /Serenity-Place-Website/pages/payment.html?booking_id=$booking_id");
+        exit();
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    $stmt->close();
+  }
+
+  $conn->close();
+  ?>
+
   <!-- ======= Header ======= -->
   <header id="header-main" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
@@ -170,7 +267,7 @@
           <div class="reservation-form">
             <h2>Make a Reservation</h2>
             <!-- Reservation Form -->
-            <form id="reservationForm" action="../forms/schedule.php" method="POST">
+            <form id="reservationForm" method="POST">
                 <!-- Static Villa ID -->
                 <input type="hidden" id="villa_id" name="villa_id" value="1"> 
             
@@ -278,11 +375,17 @@
                   id: $(this).attr('id'),
                   title: $(this).attr('title'),
                   start: $(this).attr('start'),
-                  end: $(this).attr('end')
+                  end: $(this).attr('end'),
+                  description: $(this).attr('description')
                 });
               });
               callback(events);
             }
+          });
+        },
+        eventRender: function(event, element) {
+          element.qtip({
+            content: event.description
           });
         }
       });

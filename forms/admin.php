@@ -57,7 +57,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Sales <span>| Today</span></h5>
                   <div class="d-flex align-items-center">
-                      <div class="ps-3">
+                    <div class="ps-3">
                       <h6>145</h6>
                       <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
                     </div>
@@ -108,31 +108,70 @@
             <!-- Recent Sales -->
             <div class="col-12">
               <div class="card-admin recent-sales overflow-auto">
-                <a href="admin-sched.html" class="stretched-link">
+                <a href="admintable.php" class="stretched-link">
                   <div class="card-body">
-                    <h5 class="card-title">Bookings</h5>
+                    <h5 class="card-title">Recent Bookings</h5>
                     <table class="table table-borderless datatable">
                       <thead>
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">Name</th>
-                          <th scope="col">Booking</th>
+                          <th scope="col">Duration</th>
                           <th scope="col">Price</th>
                           <th scope="col">Date</th>
                           <th scope="col">Status</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row"><a href="#">#2457</a></th>
-                          <td>Brandon Jacob</td>
-                          <td>At praesentium minu</td>
-                          <td>$64</td>
-                          <td>02/05/2012</td>
-                          <td><span class="badge bg-success">Approved</span></td>
-                        </tr>
+                      <tbody id="recent-bookings-body">
+                        <?php
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "accounts";
+
+                        try {
+                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                            $stmt = $conn->prepare("SELECT booking_id, username, check_in_date, check_out_date, time_in, time_out, total_amount, created_at, booking_status FROM Bookings ORDER BY created_at DESC LIMIT 5");
+                            $stmt->execute();
+
+                            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                            
+                            if ($stmt->rowCount() > 0) {
+                                foreach ($result as $row) {
+                                    // Calculate duration
+                                    $check_in = new DateTime($row['check_in_date'] . ' ' . $row['time_in']);
+                                    $check_out = new DateTime($row['check_out_date'] . ' ' . $row['time_out']);
+                                    $interval = $check_in->diff($check_out);
+                                    $duration = $interval->format('%a days %h hours');
+                                    if ($interval->d == 0) {
+                                        $duration = $interval->format('%h hours');
+                                    } elseif ($interval->h == 0) {
+                                        $duration = $interval->format('%a days');
+                                    }
+
+                                    $statusClass = ($row['booking_status'] === 'confirmed') ? 'success' : 'warning';
+
+                                    echo '<tr>';
+                                    echo '<th scope="row"><a href="#">#' . $row['booking_id'] . '</a></th>';
+                                    echo '<td>' . $row['username'] . '</td>';
+                                    echo '<td>' . $duration . '</td>';
+                                    echo '<td>$' . $row['total_amount'] . '</td>';
+                                    echo '<td>' . $row['created_at'] . '</td>';
+                                    echo '<td><span class="badge bg-' . $statusClass . '">' . $row['booking_status'] . '</span></td>';
+                                    echo '</tr>';
+                                }
+                            } else {
+                                echo '<tr><td colspan="6">No recent bookings found.</td></tr>';
+                            }
+                        } catch(PDOException $e) {
+                            echo "Error: " . $e->getMessage();
+                        }
+
+                        $conn = null;
+                        ?>
                       </tbody>
-                      
                     </table>
                   </div>
                 </a>
@@ -221,6 +260,7 @@
   <!-- FullCalendar Integration -->
   <script>
     $(document).ready(function() {
+      // Initialize FullCalendar
       $('#calendar').fullCalendar({
         defaultView: 'month',
         events: function(start, end, timezone, callback) {
@@ -247,25 +287,22 @@
         }
       });
 
-      $('#reservationFormModal').on('submit', function(event) {
-        event.preventDefault();
-        var villaOption = $('#villaOption').val();
-        var reservationDate = $('#reservationDate').val();
-        var startTime = $('#startTime').val();
-        var endTime = $('#endTime').val();
+      // Fetch and display recent bookings
+      function fetchRecentBookings() {
+        $.ajax({
+          url: 'fetch_recent_bookings.php',
+          success: function(data) {
+            var bookingsBody = $('#recent-bookings-body');
+            bookingsBody.html(data); // Directly insert the HTML
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.error('AJAX Error:', textStatus, errorThrown);
+          }
+        });
+      }
 
-        $('#calendar').fullCalendar('renderEvent', {
-          title: villaOption,
-          start: reservationDate + 'T' + startTime,
-          end: reservationDate + 'T' + endTime
-        }, true);
-
-        $('#reservationModal').modal('hide');
-      });
-
-      $('.close').on('click', function() {
-        $('#reservationModal').modal('hide');
-      });
+      // Fetch recent bookings on page load
+      fetchRecentBookings();
     });
   </script>
 </body>

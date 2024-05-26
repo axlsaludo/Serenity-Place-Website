@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
 
     // Redirect based on username and password
     if ($username == 'admin' && $password == 'admin') {
-        header("Location: ../pages/admin.html");
+        header("Location: ../forms/admin.php");
     } else {
         header("Location: ../pages/villas.html");
     }
