@@ -302,3 +302,81 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+/* Js for Calendar*/
+
+<script>
+    $(document).ready(function() {
+        var isStartSelected = false;
+        var startDate, endDate;
+
+        $('#calendar').fullCalendar({
+            defaultView: 'month',
+            selectable: true,
+            select: function(start, end) {
+                if (!isStartSelected) {
+                    startDate = start;
+                    $('#reservationStartDate').val(start.format('YYYY-MM-DD'));
+                    isStartSelected = true;
+                } else {
+                    endDate = end;
+                    if (end.isAfter(startDate)) {
+                        $('#reservationEndDate').val(end.subtract(1, 'days').format('YYYY-MM-DD'));
+                        isStartSelected = false;
+                    } else {
+                        alert("Departure date must be after the arrival date.");
+                    }
+                }
+            },
+            minDate: new Date() // Gray out past dates
+        });
+
+        // Clear date function
+        window.clearDate = function(inputId) {
+            $('#' + inputId).val('');
+            isStartSelected = false;
+            if (inputId === 'reservationStartDate') {
+                $('#reservationEndDate').val('');
+            }
+        };
+
+        // Calculate price based on duration
+        function calculatePrice(startTime, endTime) {
+            var duration = moment.duration(moment(endTime, 'HH:mm').diff(moment(startTime, 'HH:mm')));
+            var hours = duration.asHours();
+
+            // Minimum schedule is 5 hours
+            if (hours < 5) {
+                hours = 5;
+            }
+
+            // Price is $2500 for 8 hours
+            var pricePerHour = 2500 / 8;
+            var price = pricePerHour * hours;
+            return price.toFixed(2);
+        }
+
+        // Update price when start time, end time, adults, or children change
+        $('#startTime, #endTime, #adults, #children').change(function() {
+            var adults = parseInt($('#adults').val());
+            var children = parseInt($('#children').val());
+
+            // Limit number of children based on number of adults
+            var maxChildren = 4 - adults;
+            if (children > maxChildren) {
+                children = maxChildren;
+                $('#children').val(maxChildren);
+            }
+
+            // Calculate total guests (including adults and children)
+            var totalGuests = adults + children;
+
+            // Calculate price based on duration and total guests
+            var startTime = $('#startTime').val();
+            var endTime = $('#endTime').val();
+            var price = calculatePrice(startTime, endTime);
+            $('#total_amount').val(price);
+        });
+    });
+</script>
+
+

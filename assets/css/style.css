@@ -1086,15 +1086,15 @@ section {
 }
 
 /* Calendar and Sched Stuff */
-  #calendar-reservation-container {
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    padding: 20px;
-    max-width: 2200px;
-    margin: 0 auto;
-    border-radius: 8px;
-  }
+#calendar-reservation-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20px;
+  max-width: 2200px;
+  margin: 0 auto;
+  border-radius: 8px;
+}
 
 #calendar-container, #reservation-container {
   flex: 1;
@@ -1109,22 +1109,30 @@ section {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.time-container, .guests {
-  display: flex;
-  justify-content: space-between;
+.date-input-container {
+  position: relative;
+}
+
+input[type="text"] {
+  width: calc(100% - 30px); /* Adjust width to fit the clear button */
+  padding: 12px;
   margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding does not affect width */
 }
 
-.time-container div, .guests div {
-  flex: 1; /* Flex property to divide space equally */
-  margin-right: 10px; /* Space between elements */
+.clear-date {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
 }
 
-.time-container div:last-child, .guests div:last-child {
-  margin-right: 0; /* No margin on the last element */
-}
-
-input[type="time"], input[type="number"], input[type="text"], select {
+input[type="time"], input[type="number"], select {
   width: 100%; /* Full width to fill container */
   padding: 12px;
   margin-bottom: 10px;
@@ -1158,16 +1166,16 @@ label {
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .time-container, .guests {
-    flex-direction: column;
+      flex-direction: column;
   }
 
   .time-container div, .guests div {
-    margin-right: 0;
-    margin-bottom: 10px;
+      margin-right: 0;
+      margin-bottom: 10px;
   }
 
   .time-container div:last-child, .guests div:last-child {
-    margin-bottom: 0; /* No extra margin at the bottom of the last element */
+      margin-bottom: 0; /* No extra margin at the bottom of the last element */
   }
 }
 
@@ -1188,6 +1196,7 @@ label {
 .time-input label, .guests-input label {
   margin-bottom: 5px;
 }
+
 
 
 /*--------------------------------------------------------------
