@@ -259,10 +259,17 @@
 
   <!-- FullCalendar Integration -->
   <script>
+        
     $(document).ready(function() {
       // Initialize FullCalendar
-      $('#calendar').fullCalendar({
+      var calendar = $('#calendar').fullCalendar({
         defaultView: 'month',
+        selectable: true,
+        select: function(start, end) {
+          $('#reservationStartDate').val(start.format('YYYY-MM-DD'));
+          $('#reservationEndDate').val(end.format('YYYY-MM-DD'));
+        },
+        minDate: new Date(), // Gray out past dates
         events: function(start, end, timezone, callback) {
           $.ajax({
             url: 'fetch_bookings.php',
@@ -271,22 +278,24 @@
               var events = [];
               $(data).each(function() {
                 events.push({
-                  title: this.title,
-                  start: this.start,
-                  end: this.end
+                  id: $(this).attr('id'),
+                  title: $(this).attr('title'),
+                  start: $(this).attr('start'),
+                  end: $(this).attr('end'),
+                  description: $(this).attr('description')
                 });
               });
               callback(events);
             }
           });
         },
-        selectable: true,
-        select: function(start, end) {
-          $('#reservationStartDate').val(start.format('YYYY-MM-DD'));
-          $('#reservationEndDate').val(end.format('YYYY-MM-DD'));
+        eventRender: function(event, element) {
+          element.qtip({
+            content: event.description
+          });
         }
       });
-
+      
       // Fetch and display recent bookings
       function fetchRecentBookings() {
         $.ajax({
