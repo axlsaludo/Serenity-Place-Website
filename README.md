@@ -1,7 +1,3 @@
-Sure, here's a sample README for the Serenity-Place-Website repository:
-
----
-
 # Serenity Place Website
 
 Welcome to the Serenity Place Website repository. This project is a web application designed to provide a serene and peaceful online experience for users. The website aims to offer features such as relaxation techniques, meditation guides, and calming visuals to help users find a moment of tranquility in their busy lives.
@@ -99,4 +95,3 @@ If you have any questions or suggestions, feel free to contact us:
 - **ewanmoak**
 - **Email:** ewanmoavevo@example.com
 - **GitHub:** [ewanmoak](https://github.com/ewanmoak)
----
