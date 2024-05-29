@@ -113,7 +113,7 @@
             <!-- Recent Sales -->
             <div class="col-12">
               <div class="card-admin recent-sales overflow-auto">
-                <a href="admintable.php" class="stretched-link">
+                <a href="admintable.html" class="stretched-link">
                   <div class="card-body">
                     <h5 class="card-title">Recent Bookings</h5>
                     <table class="table table-borderless datatable">
@@ -128,54 +128,6 @@
                         </tr>
                       </thead>
                       <tbody id="recent-bookings-body">
-                        <?php
-                        $servername = "localhost";
-                        $username = "root";
-                        $password = "";
-                        $dbname = "accounts";
-
-                        try {
-                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                            $stmt = $conn->prepare("SELECT booking_id, username, check_in_date, check_out_date, time_in, time_out, total_amount, created_at, booking_status FROM Bookings ORDER BY created_at DESC LIMIT 5");
-                            $stmt->execute();
-
-                            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                            
-                            if ($stmt->rowCount() > 0) {
-                                foreach ($result as $row) {
-                                    // Calculate duration
-                                    $check_in = new DateTime($row['check_in_date'] . ' ' . $row['time_in']);
-                                    $check_out = new DateTime($row['check_out_date'] . ' ' . $row['time_out']);
-                                    $interval = $check_in->diff($check_out);
-                                    $duration = $interval->format('%a days %h hours');
-                                    if ($interval->d == 0) {
-                                        $duration = $interval->format('%h hours');
-                                    } elseif ($interval->h == 0) {
-                                        $duration = $interval->format('%a days');
-                                    }
-
-                                    $statusClass = ($row['booking_status'] === 'confirmed') ? 'success' : 'warning';
-
-                                    echo '<tr>';
-                                    echo '<th scope="row"><a href="#">#' . $row['booking_id'] . '</a></th>';
-                                    echo '<td>' . $row['username'] . '</td>';
-                                    echo '<td>' . $duration . '</td>';
-                                    echo '<td>$' . $row['total_amount'] . '</td>';
-                                    echo '<td>' . $row['created_at'] . '</td>';
-                                    echo '<td><span class="badge bg-' . $statusClass . '">' . $row['booking_status'] . '</span></td>';
-                                    echo '</tr>';
-                                }
-                            } else {
-                                echo '<tr><td colspan="6">No recent bookings found.</td></tr>';
-                            }
-                        } catch(PDOException $e) {
-                            echo "Error: " . $e->getMessage();
-                        }
-
-                        $conn = null;
-                        ?>
                       </tbody>
                     </table>
                   </div>

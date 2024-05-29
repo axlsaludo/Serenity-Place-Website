@@ -70,49 +70,6 @@
                 </tr>
               </thead>
               <tbody>
-                <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "accounts";
-
-                try {
-                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                    $stmt = $conn->prepare("SELECT booking_id, username, check_in_date, check_out_date, time_in, time_out, total_amount, created_at, booking_status FROM Bookings ORDER BY created_at DESC");
-                    $stmt->execute();
-
-                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    
-                    if ($stmt->rowCount() > 0) {
-                        foreach ($result as $row) {
-                            $statusClass = ($row['booking_status'] === 'confirmed') ? 'success' : (($row['booking_status'] === 'cancelled') ? 'danger' : 'warning');
-
-                            echo '<tr>';
-                            echo '<td>' . $row['booking_id'] . '</td>';
-                            echo '<td>' . $row['username'] . '</td>';
-                            echo '<td>' . $row['created_at'] . '</td>';
-                            echo '<td>' . $row['check_in_date'] . '</td>';
-                            echo '<td>' . $row['check_out_date'] . '</td>';
-                            echo '<td>' . $row['time_in'] . '</td>';
-                            echo '<td>' . $row['time_out'] . '</td>';
-                            echo '<td><span class="badge bg-' . $statusClass . '">' . $row['booking_status'] . '</span></td>';
-                            echo '<td>';
-                            echo '<button type="button" class="btn btn-success btn-confirm" data-id="' . $row['booking_id'] . '">Confirm</button>';
-                            echo '<button type="button" class="btn btn-danger btn-cancel" data-id="' . $row['booking_id'] . '">Cancel</button>';
-                            echo '</td>';
-                            echo '</tr>';
-                        }
-                    } else {
-                        echo '<tr><td colspan="9">No bookings found.</td></tr>';
-                    }
-                } catch(PDOException $e) {
-                    echo "Error: " . $e->getMessage();
-                }
-
-                $conn = null;
-                ?>
               </tbody>
             </table>
             <!-- End Table with stripped rows -->
@@ -160,48 +117,7 @@
 <script src="../assets/js/admin.js"></script>
 
 <!-- DataTables Integration -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var table = new simpleDatatables.DataTable(".datatable", {
-      perPage: 10,
-      perPageSelect: [5, 10, 15, 20],
-      labels: {
-        placeholder: "Search...",
-        perPage: "Show {select} entries per page",
-        noRows: "No entries found",
-        info: "Showing {start} to {end} of {rows} entries"
-      }
-    });
 
-    document.querySelectorAll('.btn-confirm').forEach(function(button) {
-      button.addEventListener('click', function() {
-        var bookingId = this.getAttribute('data-id');
-        updateBookingStatus(bookingId, 'confirmed');
-      });
-    });
-
-    document.querySelectorAll('.btn-cancel').forEach(function(button) {
-      button.addEventListener('click', function() {
-        var bookingId = this.getAttribute('data-id');
-        updateBookingStatus(bookingId, 'cancelled');
-      });
-    });
-
-    function updateBookingStatus(bookingId, status) {
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'update_booking_status.php', true);
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          location.reload(); // Reload the page to see the changes
-        } else {
-          alert('Error updating booking status');
-        }
-      };
-      xhr.send('booking_id=' + bookingId + '&status=' + status);
-    }
-  });
-</script>
 
 </body>
 

@@ -61,7 +61,7 @@
       <div class="container">
         <h3>Complete Your Payment</h3>
         <p>Booking ID: <span id="booking-id"></span></p>
-        <form action="/Serenity-Place-Website/forms/payment.php" method="POST">
+        <form id="payment-form">
           <input type="hidden" name="booking_id" id="booking_id_input">
           <div class="mb-3">
             <label for="cc-name" class="form-label">Name on card</label>
@@ -88,25 +88,26 @@
       </div>
     </section>
   </main><!-- End #main -->
- <!-- ======= Footer ======= -->
- <footer id="footer">
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>The Serenity Place</h3>
-          <p>
-            Dao Street, San Isidro <br>
-            Lipa City, Batangas<br>
-            Philippines<br><br>
-            <strong>Phone:</strong> +63 923 346 6306<br>
-            <strong>Email:</strong> theserenityplacelipa@gmail.com<br>
-          </p>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>The Serenity Place</h3>
+            <p>
+              Dao Street, San Isidro <br>
+              Lipa City, Batangas<br>
+              Philippines<br><br>
+              <strong>Phone:</strong> +63 923 346 6306<br>
+              <strong>Email:</strong> theserenityplacelipa@gmail.com<br>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</footer><!-- End Footer -->
+  </footer><!-- End Footer -->
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -122,6 +123,11 @@
       const bookingId = urlParams.get('booking_id');
       document.getElementById('booking-id').innerText = bookingId;
       document.getElementById('booking_id_input').value = bookingId;
+      
+      document.getElementById('payment-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+        window.location.href = 'thankyou.html'; // Redirect to the thank you page
+      });
     });
   </script>
 </body>
