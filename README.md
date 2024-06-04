@@ -42,16 +42,7 @@ To set up the project locally, follow these steps:
     npm install sql apacheserver fullcalendar
     ```
 
-3. **Set up environment variables:**
-
-    Create a `.env` file in the root directory and add the following variables:
-
-    ```
-    MONGODB_URI=your_mongodb_uri
-    SESSION_SECRET=your_session_secret
-    ```
-
-4. **Start the development server using XAMPP or LAMMP**
+3. **Start the development server using XAMPP or LAMMP**
 
     The website should now be running on `http://localhost:Serenity-Place-Website`.
 
@@ -93,5 +84,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 If you have any questions or suggestions, feel free to contact us:
 
 - **ewanmoak**
-- **Email:** ewanmoavevo@example.com
+- **Email:** ewanmoavevo@gmail.com
 - **GitHub:** [ewanmoak](https://github.com/ewanmoak)
