@@ -23,7 +23,7 @@ Welcome to the Serenity Place Website repository. This project is a web applicat
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend:** Php
 - **Database:** SQL Lite
-- **Deployment:** Heroku
+- **Deployment:** GitHub Pages
 
 ## Installation
 
